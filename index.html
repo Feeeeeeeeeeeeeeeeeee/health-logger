@@ -11,20 +11,18 @@
       background-color: #0b0d10;
       color: #f3f4f6;
       margin: 0;
-      padding: 24px 16px;
+      padding: 20px 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
-    .container {
-      width: 100%;
-      max-width: 480px;
-    }
+    .container { width: 100%; max-width: 480px; }
+    
     .header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 18px;
+      margin-bottom: 14px;
     }
     h1 {
       font-size: 22px;
@@ -42,21 +40,57 @@
       margin-left: 6px;
       box-shadow: 0 0 8px #e11d48;
     }
-    
-    /* Main Input Card */
+
+    /* Mode Pill Selector */
+    .mode-selector {
+      display: flex;
+      background: #14171d;
+      border: 1px solid #232733;
+      border-radius: 12px;
+      padding: 4px;
+      margin-bottom: 16px;
+    }
+    .mode-btn {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      background: transparent;
+      color: #9ca3af;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-align: center;
+    }
+    .mode-btn.active {
+      background: #232733;
+      color: #ffffff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+    .mode-btn.active.coach {
+      color: #fb7185;
+    }
+
+    /* Main Card */
     .input-card {
       background: #14171d;
       border: 1px solid #232733;
-      padding: 22px 18px;
+      padding: 20px 16px;
       border-radius: 16px;
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
     }
 
-    /* Voice Button */
+    /* Action Buttons Row */
+    .action-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
     #micBtn {
-      width: 100%;
-      padding: 18px;
-      font-size: 17px;
+      padding: 16px 12px;
+      font-size: 15px;
       font-weight: 700;
       color: #ffffff;
       background: #e11d48;
@@ -66,74 +100,96 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      box-shadow: 0 4px 16px rgba(225, 29, 72, 0.4);
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(225, 29, 72, 0.35);
       transition: all 0.15s ease;
     }
-    #micBtn.recording {
-      background: #991b1b;
-      animation: pulse 1.2s infinite;
-    }
-    #micBtn:disabled { opacity: 0.5; cursor: not-allowed; animation: none; }
+    #micBtn.recording { background: #991b1b; animation: pulse 1.2s infinite; }
 
-    .divider {
+    .photo-label {
+      padding: 16px 12px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+      background: #1f242f;
+      border: 1px solid #323846;
+      border-radius: 12px;
+      cursor: pointer;
       display: flex;
       align-items: center;
-      text-align: center;
-      margin: 20px 0;
-      color: #6b7280;
+      justify-content: center;
+      gap: 8px;
+      box-sizing: border-box;
+      transition: all 0.15s ease;
+    }
+    .photo-label:active { background: #282f3e; }
+    input[type="file"] { display: none; }
+
+    /* Photo Preview Thumbnail */
+    #photoPreviewContainer {
+      display: none;
+      position: relative;
+      margin-bottom: 12px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #374151;
+      max-height: 180px;
+    }
+    #photoPreview { width: 100%; height: 180px; object-fit: cover; display: block; }
+    #removePhotoBtn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 4px 10px;
       font-size: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
+      cursor: pointer;
     }
-    .divider::before, .divider::after {
-      content: '';
-      flex: 1;
-      border-bottom: 1px solid #262933;
-    }
-    .divider::before { margin-right: 12px; }
-    .divider::after { margin-left: 12px; }
 
     /* Text Area */
     textarea {
       width: 100%;
-      height: 110px;
-      padding: 14px;
+      height: 95px;
+      padding: 12px;
       border: 1px solid #272b38;
       border-radius: 10px;
-      font-size: 16px;
+      font-size: 15px;
       line-height: 1.4;
       background: #0d0f13;
       color: #f3f4f6;
       resize: vertical;
       outline: none;
-      transition: border-color 0.2s;
     }
     textarea:focus { border-color: #e11d48; }
     textarea::placeholder { color: #4b5563; }
 
-    #textBtn {
+    #submitBtn {
       width: 100%;
       margin-top: 10px;
-      padding: 14px;
+      padding: 15px;
       background: #1f232d;
       color: #f3f4f6;
       border: 1px solid #303544;
       border-radius: 10px;
       font-size: 16px;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
       transition: all 0.15s;
     }
-    #textBtn:hover { background: #272d3a; }
-    #textBtn:active { transform: scale(0.98); }
-    #textBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+    #submitBtn.ready-send {
+      background: #e11d48;
+      border-color: #e11d48;
+      box-shadow: 0 4px 14px rgba(225, 29, 72, 0.35);
+    }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
 
     /* Status Banner */
     #status {
-      margin-top: 16px;
-      padding: 14px 16px;
+      margin-top: 14px;
+      padding: 12px 14px;
       border-radius: 10px;
       font-size: 14px;
       line-height: 1.4;
@@ -144,206 +200,160 @@
     .status-success { display: block !important; background: #11261d; color: #4ade80; border: 1px solid #17452d; }
     .status-error { display: block !important; background: #311317; color: #fb7185; border: 1px solid #5a1c24; }
 
-    /* Coaching / Follow-up Card */
-    #followUpCard {
+    /* Coach Review Card */
+    #coachReviewCard {
       display: none;
-      margin-top: 14px;
+      margin-top: 16px;
       background: #1a1216;
       border: 1px solid #881337;
       padding: 16px;
       border-radius: 12px;
     }
-    .follow-up-header {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      color: #fb7185;
+    .coach-title {
       font-size: 12px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.06em;
-      margin-bottom: 6px;
+      color: #fb7185;
+      margin-bottom: 8px;
     }
-    .follow-up-text {
-      color: #fff1f2;
+    .coach-text { font-size: 14px; color: #fff1f2; line-height: 1.45; margin-bottom: 14px; }
+    #confirmWriteBtn {
+      width: 100%;
+      padding: 14px;
+      background: #16a34a;
+      color: white;
+      border: none;
+      border-radius: 10px;
       font-size: 15px;
-      line-height: 1.45;
-      font-weight: 500;
+      font-weight: 700;
+      cursor: pointer;
     }
 
-    /* Collapsible Dashboard Toggle */
+    /* Collapsible Dashboard */
     .toggle-btn {
       width: 100%;
-      margin-top: 24px;
-      padding: 13px;
+      margin-top: 20px;
+      padding: 12px;
       background: transparent;
       color: #9ca3af;
       border: 1px dashed #2b303d;
       border-radius: 10px;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 600;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      transition: all 0.15s ease;
+      gap: 6px;
     }
-    .toggle-btn:hover { background: #14171d; color: #f3f4f6; border-color: #3b4254; }
-
-    /* Collapsible Dashboard */
-    #dashboardSection {
-      display: none;
-      margin-top: 14px;
-    }
+    #dashboardSection { display: none; margin-top: 14px; }
     .stats-card {
       background: #14171d;
       border: 1px solid #232733;
       border-radius: 14px;
-      padding: 18px;
+      padding: 16px;
       margin-bottom: 12px;
     }
     .stats-title {
-      font-size: 12px;
+      font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: #e11d48;
       font-weight: 700;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
     }
-    .stats-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-    .stats-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 8px; }
-    .stats-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 8px; }
-    
+    .stats-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+    .stats-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; margin-top: 6px; }
+    .stats-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 6px; }
     .stat-box {
       background: #0d0f13;
-      padding: 10px 6px;
+      padding: 8px 4px;
       border-radius: 8px;
       text-align: center;
       border: 1px solid #1a1e27;
     }
-    .stat-val { font-size: 16px; font-weight: 700; color: #f9fafb; }
+    .stat-val { font-size: 15px; font-weight: 700; color: #f9fafb; }
     .stat-val.highlight { color: #fb7185; }
-    .stat-lbl {
-      font-size: 10px;
-      color: #8b92a1;
-      text-transform: uppercase;
-      margin-top: 3px;
-      letter-spacing: 0.05em;
-    }
+    .stat-lbl { font-size: 9px; color: #8b92a1; text-transform: uppercase; margin-top: 2px; }
 
-    @keyframes pulse {
-      0% { opacity: 1; }
-      50% { opacity: 0.6; }
-      100% { opacity: 1; }
-    }
+    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.6; } 100% { opacity: 1; } }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="header">
       <h1>Tracker Scribe<span class="accent-dot"></span></h1>
-      <span id="dateLabel" style="font-size: 13px; color: #8b92a1; font-weight: 500;">Today</span>
+      <span style="font-size: 13px; color: #8b92a1;">Today</span>
     </div>
 
-    <!-- PRIMARY FOCUS: INPUT CARD -->
+    <!-- Mode Selector -->
+    <div class="mode-selector">
+      <button class="mode-btn active" id="modeQuick" onclick="setMode('quick')">⚡ Quick Log</button>
+      <button class="mode-btn" id="modeCoach" onclick="setMode('coach')">💬 Review & Coach</button>
+    </div>
+
+    <!-- Input Card -->
     <div class="input-card">
-      <button id="micBtn" type="button" onclick="toggleRecord()">🎙️ Record Voice Note</button>
+      <div class="action-grid">
+        <button id="micBtn" type="button" onclick="toggleRecord()">🎙️ Voice Note</button>
+        <label class="photo-label">
+          <input type="file" id="cameraInput" accept="image/*" capture="environment" onchange="handlePhotoSelect(this)">
+          📸 Take Photo
+        </label>
+      </div>
 
-      <div class="divider">or type manually</div>
+      <!-- Live Photo Preview -->
+      <div id="photoPreviewContainer">
+        <img id="photoPreview" src="" alt="Meal preview">
+        <button id="removePhotoBtn" type="button" onclick="clearPhoto()">✕ Remove</button>
+      </div>
 
-      <textarea id="logInput" placeholder="e.g. Drank 500 mL water, had 2 eggs and toast. Satiety 4."></textarea>
-      <button id="textBtn" type="button" onclick="submitText()">Log Text Entry</button>
+      <textarea id="logInput" placeholder="Add details or type entry (e.g. 500 mL water, oats at 8:30)..."></textarea>
+      
+      <button id="submitBtn" type="button" onclick="submitEntry()">Send to Sheet</button>
 
       <div id="status"></div>
 
-      <!-- GEMINI COACHING / FOLLOW-UP CARD -->
-      <div id="followUpCard">
-        <div class="follow-up-header">
-          <span>💬 Gemini Check-in</span>
-        </div>
-        <div class="follow-up-text" id="followUpText"></div>
+      <!-- Coach Mode Review / Confirmation -->
+      <div id="coachReviewCard">
+        <div class="coach-title">💬 Gemini Review & Coaching</div>
+        <div class="coach-text" id="coachText"></div>
+        <button id="confirmWriteBtn" type="button" onclick="confirmWriteToSheet()">✅ Confirm & Log to Sheet</button>
       </div>
     </div>
 
-    <!-- COLLAPSIBLE DASHBOARD TOGGLE -->
+    <!-- Collapsible Dashboard -->
     <button class="toggle-btn" id="toggleBtn" onclick="toggleDashboard()">
       <span>📊</span> <span id="toggleText">View Today's Stats</span>
     </button>
 
-    <!-- DASHBOARD CONTAINER (HIDDEN BY DEFAULT) -->
     <div id="dashboardSection">
-      <!-- Nutrition & Hydration -->
       <div class="stats-card">
         <div class="stats-title">
           <span>Nutrition & Hydration</span>
-          <span id="syncStatus" style="font-size: 11px; text-transform: none; color: #6b7280; font-weight: normal;">Live</span>
+          <span id="syncStatus" style="color: #6b7280; font-size: 10px;">Live</span>
         </div>
         <div class="stats-grid-4">
-          <div class="stat-box">
-            <div class="stat-val highlight" id="valCalories">-</div>
-            <div class="stat-lbl">Calories</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-val" id="valProtein">-</div>
-            <div class="stat-lbl">Protein</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-val" id="valCarbs">-</div>
-            <div class="stat-lbl">Carbs</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-val" id="valFat">-</div>
-            <div class="stat-lbl">Fat</div>
-          </div>
+          <div class="stat-box"><div class="stat-val highlight" id="valCalories">-</div><div class="stat-lbl">Calories</div></div>
+          <div class="stat-box"><div class="stat-val" id="valProtein">-</div><div class="stat-lbl">Protein</div></div>
+          <div class="stat-box"><div class="stat-val" id="valCarbs">-</div><div class="stat-lbl">Carbs</div></div>
+          <div class="stat-box"><div class="stat-val" id="valFat">-</div><div class="stat-lbl">Fat</div></div>
         </div>
         <div class="stats-grid-2">
-          <div class="stat-box">
-            <div class="stat-val" id="valWater">-</div>
-            <div class="stat-lbl">Water (L)</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-val" id="valCoffee">-</div>
-            <div class="stat-lbl">Coffees</div>
-          </div>
+          <div class="stat-box"><div class="stat-val" id="valWater">-</div><div class="stat-lbl">Water (L)</div></div>
+          <div class="stat-box"><div class="stat-val" id="valCoffee">-</div><div class="stat-lbl">Coffees</div></div>
         </div>
       </div>
 
-      <!-- Vitals & Daily Baseline -->
       <div class="stats-card">
-        <div class="stats-title">
-          <span>Vitals & Sleep Baseline</span>
-        </div>
+        <div class="stats-title"><span>Vitals & Baseline</span></div>
         <div class="stats-grid-3">
-          <div class="stat-box">
-            <div class="stat-val" id="valSleep">-</div>
-            <div class="stat-lbl">Sleep (Hrs)</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-val" id="valWeight">-</div>
-            <div class="stat-lbl">Weight (kg)</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-val" id="valSteps">-</div>
-            <div class="stat-lbl">Steps</div>
-          </div>
-        </div>
-        <div class="stats-grid-3">
-          <div class="stat-box">
-            <div class="stat-val" id="valBodyFat">-</div>
-            <div class="stat-lbl">Body Fat %</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-val" id="valMuscle">-</div>
-            <div class="stat-lbl">Muscle (kg)</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-val" id="valAffect">-</div>
-            <div class="stat-lbl">Affect</div>
-          </div>
+          <div class="stat-box"><div class="stat-val" id="valSleep">-</div><div class="stat-lbl">Sleep</div></div>
+          <div class="stat-box"><div class="stat-val" id="valWeight">-</div><div class="stat-lbl">Weight</div></div>
+          <div class="stat-box"><div class="stat-val" id="valSteps">-</div><div class="stat-lbl">Steps</div></div>
         </div>
       </div>
     </div>
@@ -352,179 +362,205 @@
   <script>
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwPKUPfGutBNhtfcy5PJaZYMQhX36mTYsWIfwcSccIgXZNoQg6aOAffgakFatTbti5p/exec";
 
+    let currentMode = "quick";
+    let selectedImageBase64 = null;
+    let selectedImageMime = "image/jpeg";
+    let pendingParsedData = null;
+    
     let mediaRecorder = null;
     let audioChunks = [];
     let isRecording = false;
     let dashboardVisible = false;
 
+    function setMode(mode) {
+      currentMode = mode;
+      document.getElementById("modeQuick").className = "mode-btn" + (mode === "quick" ? " active" : "");
+      document.getElementById("modeCoach").className = "mode-btn" + (mode === "coach" ? " active coach" : "");
+      document.getElementById("submitBtn").innerText = mode === "quick" ? "Send to Sheet" : "Review with Gemini";
+      document.getElementById("coachReviewCard").style.display = "none";
+    }
+
+    function handlePhotoSelect(input) {
+      const file = input.files[0];
+      if (!file) return;
+
+      selectedImageMime = file.type || "image/jpeg";
+      const reader = new FileReader();
+      reader.onloadend = function() {
+        selectedImageBase64 = reader.result.split(',')[1];
+        document.getElementById("photoPreview").src = reader.result;
+        document.getElementById("photoPreviewContainer").style.display = "block";
+        document.getElementById("submitBtn").classList.add("ready-send");
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function clearPhoto() {
+      selectedImageBase64 = null;
+      document.getElementById("cameraInput").value = "";
+      document.getElementById("photoPreviewContainer").style.display = "none";
+      document.getElementById("photoPreview").src = "";
+    }
+
+    async function toggleRecord() {
+      if (isRecording) stopRecording();
+      else startRecording();
+    }
+
+    async function startRecording() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        let mimeType = 'audio/webm';
+        if (!MediaRecorder.isTypeSupported('audio/webm') && MediaRecorder.isTypeSupported('audio/mp4')) {
+          mimeType = 'audio/mp4';
+        }
+        mediaRecorder = new MediaRecorder(stream, mimeType ? { mimeType } : {});
+        audioChunks = [];
+
+        mediaRecorder.ondataavailable = e => { if (e.data.size > 0) audioChunks.push(e.data); };
+        mediaRecorder.onstop = () => {
+          stream.getTracks().forEach(t => t.stop());
+          const blob = new Blob(audioChunks, { type: mediaRecorder.mimeType || 'audio/webm' });
+          sendEntry({ audioBlob: blob });
+        };
+
+        mediaRecorder.start();
+        isRecording = true;
+        const btn = document.getElementById("micBtn");
+        btn.innerText = "⏹️ Stop Audio";
+        btn.classList.add("recording");
+        showStatus("loading", "🔴 Recording voice... Speak naturally.");
+      } catch (err) {
+        showStatus("error", "⚠️ Microphone error: " + err.message);
+      }
+    }
+
+    function stopRecording() {
+      if (mediaRecorder && mediaRecorder.state !== "inactive") mediaRecorder.stop();
+      isRecording = false;
+      const btn = document.getElementById("micBtn");
+      btn.innerText = "🎙️ Voice Note";
+      btn.classList.remove("recording");
+    }
+
+    function submitEntry() {
+      const text = document.getElementById("logInput").value.trim();
+      if (!text && !selectedImageBase64) {
+        showStatus("error", "⚠️ Please enter text, record voice, or take a photo.");
+        return;
+      }
+      sendEntry({ text: text });
+    }
+
+    async function sendEntry(payload) {
+      showStatus("loading", "⏳ Processing with Gemini (" + (currentMode === "quick" ? "Direct Logging" : "Coach Mode") + ")...");
+      document.getElementById("coachReviewCard").style.display = "none";
+
+      try {
+        let body = { mode: currentMode };
+
+        if (payload.text) body.text = payload.text;
+        if (selectedImageBase64) {
+          body.image = selectedImageBase64;
+          body.imageMimeType = selectedImageMime;
+        }
+
+        if (payload.audioBlob) {
+          const reader = new FileReader();
+          body.audio = await new Promise(res => {
+            reader.onloadend = () => res(reader.result.split(',')[1]);
+            reader.readAsDataURL(payload.audioBlob);
+          });
+          body.audioMimeType = payload.audioBlob.type.split(';')[0] || 'audio/webm';
+        }
+
+        const res = await fetch(SCRIPT_URL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(body)
+        });
+
+        const data = await res.json();
+
+        if (data.status === "success") {
+          if (currentMode === "quick") {
+            showStatus("success", "✅ " + data.message);
+            resetInputs();
+            if (dashboardVisible) fetchStats();
+          } else {
+            // Coach mode: display review card
+            showStatus("success", "✅ Gemini reviewed your entry.");
+            pendingParsedData = data.parsed;
+            document.getElementById("coachText").innerText = data.followUp;
+            document.getElementById("coachReviewCard").style.display = "block";
+          }
+        } else {
+          showStatus("error", "❌ " + data.message);
+        }
+      } catch (err) {
+        showStatus("error", "❌ Network error: " + err.message);
+      }
+    }
+
+    async function confirmWriteToSheet() {
+      if (!pendingParsedData) return;
+      showStatus("loading", "⏳ Writing confirmed data to your spreadsheet...");
+
+      try {
+        const res = await fetch(SCRIPT_URL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({ action: "confirmWrite", parsed: pendingParsedData })
+        });
+        const data = await res.json();
+
+        if (data.status === "success") {
+          showStatus("success", "✅ " + data.message);
+          document.getElementById("coachReviewCard").style.display = "none";
+          resetInputs();
+          if (dashboardVisible) fetchStats();
+        } else {
+          showStatus("error", "❌ Error: " + data.message);
+        }
+      } catch (err) {
+        showStatus("error", "❌ Error: " + err.message);
+      }
+    }
+
+    function resetInputs() {
+      document.getElementById("logInput").value = "";
+      clearPhoto();
+      pendingParsedData = null;
+    }
+
     function toggleDashboard() {
       dashboardVisible = !dashboardVisible;
       const dash = document.getElementById("dashboardSection");
-      const toggleText = document.getElementById("toggleText");
-      if (dashboardVisible) {
-        dash.style.display = "block";
-        toggleText.innerText = "Hide Today's Stats";
-        fetchStats();
-      } else {
-        dash.style.display = "none";
-        toggleText.innerText = "View Today's Stats";
-      }
+      document.getElementById("toggleText").innerText = dashboardVisible ? "Hide Today's Stats" : "View Today's Stats";
+      dash.style.display = dashboardVisible ? "block" : "none";
+      if (dashboardVisible) fetchStats();
     }
 
     async function fetchStats() {
-      document.getElementById("syncStatus").innerText = "Refreshing...";
       try {
         const res = await fetch(SCRIPT_URL + "?action=getStats");
         const stats = await res.json();
-        updateDashboardUI(stats);
-      } catch (err) {
-        document.getElementById("syncStatus").innerText = "Sync paused";
-      }
-    }
-
-    function updateDashboardUI(stats) {
-      document.getElementById("valCalories").innerText = stats.calories;
-      document.getElementById("valProtein").innerText = stats.protein + "g";
-      document.getElementById("valCarbs").innerText = stats.carbs + "g";
-      document.getElementById("valFat").innerText = stats.fat + "g";
-      document.getElementById("valWater").innerText = stats.water;
-      document.getElementById("valCoffee").innerText = stats.coffee;
-      
-      document.getElementById("valSleep").innerText = stats.sleep ? stats.sleep + "h" : "-";
-      document.getElementById("valWeight").innerText = stats.weight || "-";
-      document.getElementById("valSteps").innerText = stats.steps || "-";
-      document.getElementById("valBodyFat").innerText = stats.bodyFat ? stats.bodyFat + "%" : "-";
-      document.getElementById("valMuscle").innerText = stats.muscle || "-";
-      document.getElementById("valAffect").innerText = stats.affect || "-";
-
-      document.getElementById("syncStatus").innerText = "Updated " + stats.updatedAt;
+        document.getElementById("valCalories").innerText = stats.calories;
+        document.getElementById("valProtein").innerText = stats.protein + "g";
+        document.getElementById("valCarbs").innerText = stats.carbs + "g";
+        document.getElementById("valFat").innerText = stats.fat + "g";
+        document.getElementById("valWater").innerText = stats.water;
+        document.getElementById("valCoffee").innerText = stats.coffee;
+        document.getElementById("valSleep").innerText = stats.sleep ? stats.sleep + "h" : "-";
+        document.getElementById("valWeight").innerText = stats.weight || "-";
+        document.getElementById("valSteps").innerText = stats.steps || "-";
+      } catch (e) {}
     }
 
     function showStatus(type, msg) {
       const status = document.getElementById("status");
       status.className = "status-" + type;
       status.innerText = msg;
-    }
-
-    async function toggleRecord() {
-      if (isRecording) {
-        stopRecording();
-      } else {
-        startRecording();
-      }
-    }
-
-    async function startRecording() {
-      try {
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        
-        let mimeType = 'audio/webm';
-        if (!MediaRecorder.isTypeSupported('audio/webm')) {
-          if (MediaRecorder.isTypeSupported('audio/mp4')) mimeType = 'audio/mp4';
-          else mimeType = '';
-        }
-
-        mediaRecorder = mimeType ? new MediaRecorder(stream, { mimeType }) : new MediaRecorder(stream);
-        audioChunks = [];
-
-        mediaRecorder.ondataavailable = event => {
-          if (event.data.size > 0) audioChunks.push(event.data);
-        };
-
-        mediaRecorder.onstop = () => {
-          stream.getTracks().forEach(track => track.stop());
-          const blob = new Blob(audioChunks, { type: mediaRecorder.mimeType || 'audio/webm' });
-          sendPayload({ audio: blob });
-        };
-
-        mediaRecorder.start();
-        isRecording = true;
-        const btn = document.getElementById("micBtn");
-        btn.innerText = "⏹️ Stop & Send Audio";
-        btn.classList.add("recording");
-        showStatus("loading", "🔴 Recording... Speak naturally.");
-      } catch (err) {
-        console.error(err);
-        showStatus("error", "⚠️ Microphone access error: " + err.message);
-      }
-    }
-
-    function stopRecording() {
-      if (mediaRecorder && mediaRecorder.state !== "inactive") {
-        mediaRecorder.stop();
-      }
-      isRecording = false;
-      const btn = document.getElementById("micBtn");
-      btn.innerText = "⏳ Uploading Audio...";
-      btn.classList.remove("recording");
-      btn.disabled = true;
-    }
-
-    function submitText() {
-      const text = document.getElementById("logInput").value.trim();
-      if (!text) {
-        showStatus("error", "⚠️ Please enter text or record a note.");
-        return;
-      }
-      sendPayload({ text: text });
-    }
-
-    async function sendPayload(payload) {
-      const micBtn = document.getElementById("micBtn");
-      const textBtn = document.getElementById("textBtn");
-      const followUpCard = document.getElementById("followUpCard");
-      followUpCard.style.display = "none";
-
-      micBtn.disabled = true;
-      textBtn.disabled = true;
-
-      try {
-        let requestBody = {};
-
-        if (payload.audio) {
-          showStatus("loading", "⏳ Gemini is listening to your audio and updating your Sheet...");
-          const base64Data = await new Promise((resolve) => {
-            const reader = new FileReader();
-            reader.onloadend = () => resolve(reader.result.split(',')[1]);
-            reader.readAsDataURL(payload.audio);
-          });
-          requestBody = {
-            audio: base64Data,
-            mimeType: payload.audio.type.split(';')[0] || 'audio/webm'
-          };
-        } else {
-          showStatus("loading", "⏳ Parsing text with Gemini and updating Sheet...");
-          requestBody = { text: payload.text };
-        }
-
-        const response = await fetch(SCRIPT_URL, {
-          method: "POST",
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify(requestBody)
-        });
-
-        const result = await response.json();
-
-        if (result.status === "success") {
-          showStatus("success", "✅ " + result.message);
-          document.getElementById("logInput").value = "";
-          
-          if (result.followUp) {
-            document.getElementById("followUpText").innerText = result.followUp;
-            followUpCard.style.display = "block";
-          }
-          
-          if (dashboardVisible) fetchStats();
-        } else {
-          showStatus("error", "❌ Error: " + result.message);
-        }
-      } catch (err) {
-        showStatus("error", "❌ Network Error: " + err.message + "\\n\\nCheck Apps Script deployment access is set to 'Anyone'.");
-      } finally {
-        micBtn.disabled = false;
-        textBtn.disabled = false;
-        micBtn.innerText = "🎙️ Record Voice Note";
-      }
     }
   </script>
 </body>

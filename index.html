@@ -11,7 +11,7 @@
       background-color: #0b0d10;
       color: #f3f4f6;
       margin: 0;
-      padding: 20px 16px;
+      padding: 18px 14px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -22,10 +22,10 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
     h1 {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 700;
       margin: 0;
       color: #ffffff;
@@ -41,55 +41,126 @@
       box-shadow: 0 0 8px #e11d48;
     }
 
-    /* Mode Pill Selector */
+    /* Mode & Global Review Controls */
+    .controls-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
     .mode-selector {
+      flex: 1;
       display: flex;
       background: #14171d;
       border: 1px solid #232733;
-      border-radius: 12px;
-      padding: 4px;
-      margin-bottom: 16px;
+      border-radius: 10px;
+      padding: 3px;
     }
     .mode-btn {
       flex: 1;
-      padding: 10px;
+      padding: 8px 6px;
       border: none;
       background: transparent;
       color: #9ca3af;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
       border-radius: 8px;
       cursor: pointer;
-      transition: all 0.15s ease;
       text-align: center;
     }
     .mode-btn.active {
       background: #232733;
       color: #ffffff;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
     }
-    .mode-btn.active.coach {
+    .mode-btn.active.prep { color: #38bdf8; }
+
+    /* Review Toggle Button */
+    .review-toggle-btn {
+      padding: 8px 12px;
+      background: #14171d;
+      border: 1px solid #232733;
+      border-radius: 10px;
+      color: #9ca3af;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .review-toggle-btn.active {
+      border-color: #e11d48;
       color: #fb7185;
+      background: #1e1317;
+    }
+
+    /* Active Preps Chips Row */
+    .preps-container {
+      margin-bottom: 14px;
+      background: #14171d;
+      border: 1px solid #232733;
+      border-radius: 12px;
+      padding: 10px 12px;
+    }
+    .preps-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #9ca3af;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .chips-scroll {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .chip {
+      background: #1e232d;
+      border: 1px solid #333a4a;
+      border-radius: 20px;
+      padding: 6px 10px 6px 12px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #f3f4f6;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+    .chip:hover { border-color: #38bdf8; }
+    .chip-date {
+      font-size: 11px;
+      color: #94a3b8;
+      background: #0d0f13;
+      padding: 2px 6px;
+      border-radius: 10px;
+    }
+    .chip-del {
+      color: #ef4444;
+      font-weight: bold;
+      font-size: 14px;
+      padding: 0 4px;
+      cursor: pointer;
     }
 
     /* Main Card */
     .input-card {
       background: #14171d;
       border: 1px solid #232733;
-      padding: 20px 16px;
+      padding: 18px 14px;
       border-radius: 16px;
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
     }
-
-    /* Action Buttons Row */
     .action-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
     #micBtn {
-      padding: 16px 12px;
+      padding: 15px 10px;
       font-size: 15px;
       font-weight: 700;
       color: #ffffff;
@@ -102,12 +173,10 @@
       justify-content: center;
       gap: 8px;
       box-shadow: 0 4px 14px rgba(225, 29, 72, 0.35);
-      transition: all 0.15s ease;
     }
     #micBtn.recording { background: #991b1b; animation: pulse 1.2s infinite; }
-
     .photo-label {
-      padding: 16px 12px;
+      padding: 15px 10px;
       font-size: 15px;
       font-weight: 700;
       color: #ffffff;
@@ -119,13 +188,9 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      box-sizing: border-box;
-      transition: all 0.15s ease;
     }
-    .photo-label:active { background: #282f3e; }
     input[type="file"] { display: none; }
 
-    /* Photo Preview Thumbnail */
     #photoPreviewContainer {
       display: none;
       position: relative;
@@ -133,26 +198,25 @@
       border-radius: 10px;
       overflow: hidden;
       border: 1px solid #374151;
-      max-height: 180px;
+      max-height: 160px;
     }
-    #photoPreview { width: 100%; height: 180px; object-fit: cover; display: block; }
+    #photoPreview { width: 100%; height: 160px; object-fit: cover; display: block; }
     #removePhotoBtn {
       position: absolute;
-      top: 8px;
-      right: 8px;
-      background: rgba(0, 0, 0, 0.7);
+      top: 6px;
+      right: 6px;
+      background: rgba(0, 0, 0, 0.75);
       color: white;
       border: none;
-      border-radius: 20px;
+      border-radius: 16px;
       padding: 4px 10px;
       font-size: 12px;
       cursor: pointer;
     }
 
-    /* Text Area */
     textarea {
       width: 100%;
-      height: 95px;
+      height: 90px;
       padding: 12px;
       border: 1px solid #272b38;
       border-radius: 10px;
@@ -164,12 +228,11 @@
       outline: none;
     }
     textarea:focus { border-color: #e11d48; }
-    textarea::placeholder { color: #4b5563; }
 
     #submitBtn {
       width: 100%;
       margin-top: 10px;
-      padding: 15px;
+      padding: 14px;
       background: #1f232d;
       color: #f3f4f6;
       border: 1px solid #303544;
@@ -177,16 +240,14 @@
       font-size: 16px;
       font-weight: 700;
       cursor: pointer;
-      transition: all 0.15s;
     }
-    #submitBtn.ready-send {
-      background: #e11d48;
-      border-color: #e11d48;
-      box-shadow: 0 4px 14px rgba(225, 29, 72, 0.35);
+    #submitBtn.prep-active {
+      background: #0284c7;
+      border-color: #0284c7;
+      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
     }
     button:disabled { opacity: 0.5; cursor: not-allowed; }
 
-    /* Status Banner */
     #status {
       margin-top: 14px;
       padding: 12px 14px;
@@ -200,24 +261,63 @@
     .status-success { display: block !important; background: #11261d; color: #4ade80; border: 1px solid #17452d; }
     .status-error { display: block !important; background: #311317; color: #fb7185; border: 1px solid #5a1c24; }
 
-    /* Coach Review Card */
-    #coachReviewCard {
+    /* EDITABLE REVIEW CARD */
+    #reviewCard {
       display: none;
       margin-top: 16px;
-      background: #1a1216;
-      border: 1px solid #881337;
+      background: #161a22;
+      border: 1px solid #2f3647;
       padding: 16px;
       border-radius: 12px;
     }
-    .coach-title {
+    .review-header {
       font-size: 12px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.06em;
       color: #fb7185;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
-    .coach-text { font-size: 14px; color: #fff1f2; line-height: 1.45; margin-bottom: 14px; }
+    .review-transcript-box {
+      background: #0d0f13;
+      border: 1px solid #272b38;
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 12px;
+      outline: none;
+    }
+    .review-transcript-box:focus { border-color: #38bdf8; color: #f3f4f6; }
+    .edit-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    .edit-field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .edit-field label {
+      font-size: 10px;
+      text-transform: uppercase;
+      color: #9ca3af;
+      font-weight: 600;
+    }
+    .edit-field input {
+      background: #0d0f13;
+      border: 1px solid #272b38;
+      border-radius: 6px;
+      padding: 8px 4px;
+      color: #fff;
+      font-size: 14px;
+      text-align: center;
+      outline: none;
+    }
+    .edit-field input:focus { border-color: #e11d48; }
+
     #confirmWriteBtn {
       width: 100%;
       padding: 14px;
@@ -233,7 +333,7 @@
     /* Collapsible Dashboard */
     .toggle-btn {
       width: 100%;
-      margin-top: 20px;
+      margin-top: 18px;
       padding: 12px;
       background: transparent;
       color: #9ca3af;
@@ -267,7 +367,6 @@
     }
     .stats-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
     .stats-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; margin-top: 6px; }
-    .stats-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 6px; }
     .stat-box {
       background: #0d0f13;
       padding: 8px 4px;
@@ -289,10 +388,23 @@
       <span style="font-size: 13px; color: #8b92a1;">Today</span>
     </div>
 
-    <!-- Mode Selector -->
-    <div class="mode-selector">
-      <button class="mode-btn active" id="modeQuick" onclick="setMode('quick')">⚡ Quick Log</button>
-      <button class="mode-btn" id="modeCoach" onclick="setMode('coach')">💬 Review & Coach</button>
+    <!-- Controls Row: Mode Selector + Global Review Toggle -->
+    <div class="controls-row">
+      <div class="mode-selector">
+        <button class="mode-btn active" id="modeLog" onclick="setMode('log')">⚡ Daily Log</button>
+        <button class="mode-btn" id="modePrep" onclick="setMode('prep')">🍱 Meal Prep</button>
+      </div>
+      <button class="review-toggle-btn active" id="reviewToggleBtn" onclick="toggleReview()">
+        <span>👁️ Review</span> <span id="reviewStatusText">ON</span>
+      </button>
+    </div>
+
+    <!-- Active Meal Prep Chips -->
+    <div class="preps-container" id="prepsContainer" style="display: none;">
+      <div class="preps-label">
+        <span>Active Fridge Preps (Tap to Log 1 Portion)</span>
+      </div>
+      <div class="chips-scroll" id="prepsList"></div>
     </div>
 
     <!-- Input Card -->
@@ -305,22 +417,26 @@
         </label>
       </div>
 
-      <!-- Live Photo Preview -->
       <div id="photoPreviewContainer">
         <img id="photoPreview" src="" alt="Meal preview">
         <button id="removePhotoBtn" type="button" onclick="clearPhoto()">✕ Remove</button>
       </div>
 
-      <textarea id="logInput" placeholder="Add details or type entry (e.g. 500 mL water, oats at 8:30)..."></textarea>
+      <textarea id="logInput" placeholder="Describe entry or dictate details..."></textarea>
       
       <button id="submitBtn" type="button" onclick="submitEntry()">Send to Sheet</button>
 
       <div id="status"></div>
 
-      <!-- Coach Mode Review / Confirmation -->
-      <div id="coachReviewCard">
-        <div class="coach-title">💬 Gemini Review & Coaching</div>
-        <div class="coach-text" id="coachText"></div>
+      <!-- EDITABLE REVIEW CARD -->
+      <div id="reviewCard">
+        <div class="review-header">📝 Review & Edit Before Logging</div>
+        
+        <label style="font-size: 10px; color: #94a3b8; text-transform: uppercase;">Transcript / Heard Notes</label>
+        <div class="review-transcript-box" id="reviewTranscript" contenteditable="true"></div>
+
+        <div id="editableItemsContainer"></div>
+
         <button id="confirmWriteBtn" type="button" onclick="confirmWriteToSheet()">✅ Confirm & Log to Sheet</button>
       </div>
     </div>
@@ -347,37 +463,124 @@
           <div class="stat-box"><div class="stat-val" id="valCoffee">-</div><div class="stat-lbl">Coffees</div></div>
         </div>
       </div>
-
-      <div class="stats-card">
-        <div class="stats-title"><span>Vitals & Baseline</span></div>
-        <div class="stats-grid-3">
-          <div class="stat-box"><div class="stat-val" id="valSleep">-</div><div class="stat-lbl">Sleep</div></div>
-          <div class="stat-box"><div class="stat-val" id="valWeight">-</div><div class="stat-lbl">Weight</div></div>
-          <div class="stat-box"><div class="stat-val" id="valSteps">-</div><div class="stat-lbl">Steps</div></div>
-        </div>
-      </div>
     </div>
   </div>
 
   <script>
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwPKUPfGutBNhtfcy5PJaZYMQhX36mTYsWIfwcSccIgXZNoQg6aOAffgakFatTbti5p/exec";
 
-    let currentMode = "quick";
+    let currentMode = "log"; // "log" or "prep"
+    let reviewEnabled = true;
     let selectedImageBase64 = null;
     let selectedImageMime = "image/jpeg";
     let pendingParsedData = null;
+    let loadedPresets = [];
     
     let mediaRecorder = null;
     let audioChunks = [];
     let isRecording = false;
     let dashboardVisible = false;
 
+    window.addEventListener("DOMContentLoaded", () => {
+      fetchPresets();
+    });
+
     function setMode(mode) {
       currentMode = mode;
-      document.getElementById("modeQuick").className = "mode-btn" + (mode === "quick" ? " active" : "");
-      document.getElementById("modeCoach").className = "mode-btn" + (mode === "coach" ? " active coach" : "");
-      document.getElementById("submitBtn").innerText = mode === "quick" ? "Send to Sheet" : "Review with Gemini";
-      document.getElementById("coachReviewCard").style.display = "none";
+      document.getElementById("modeLog").className = "mode-btn" + (mode === "log" ? " active" : "");
+      document.getElementById("modePrep").className = "mode-btn" + (mode === "prep" ? " active prep" : "");
+      
+      const submitBtn = document.getElementById("submitBtn");
+      if (mode === "prep") {
+        submitBtn.innerText = "Save to Meal Presets";
+        submitBtn.classList.add("prep-active");
+        document.getElementById("logInput").placeholder = "e.g. Cooked 1.2kg chicken thighs, 4c rice, broccoli. 5 portions.";
+      } else {
+        submitBtn.innerText = reviewEnabled ? "Review Entry" : "Send to Sheet";
+        submitBtn.classList.remove("prep-active");
+        document.getElementById("logInput").placeholder = "Describe entry or dictate details...";
+      }
+      document.getElementById("reviewCard").style.display = "none";
+    }
+
+    function toggleReview() {
+      reviewEnabled = !reviewEnabled;
+      const btn = document.getElementById("reviewToggleBtn");
+      const text = document.getElementById("reviewStatusText");
+      btn.className = "review-toggle-btn" + (reviewEnabled ? " active" : "");
+      text.innerText = reviewEnabled ? "ON" : "OFF";
+      if (currentMode === "log") {
+        document.getElementById("submitBtn").innerText = reviewEnabled ? "Review Entry" : "Send to Sheet";
+      }
+    }
+
+    async function fetchPresets() {
+      try {
+        const res = await fetch(SCRIPT_URL + "?action=getPresets");
+        loadedPresets = await res.json();
+        renderPresetChips();
+      } catch (e) {
+        console.error("Presets error", e);
+      }
+    }
+
+    function renderPresetChips() {
+      const container = document.getElementById("prepsContainer");
+      const list = document.getElementById("prepsList");
+      list.innerHTML = "";
+
+      if (!loadedPresets || loadedPresets.length === 0) {
+        container.style.display = "none";
+        return;
+      }
+
+      container.style.display = "block";
+      loadedPresets.forEach(p => {
+        const chip = document.createElement("div");
+        chip.className = "chip";
+        chip.innerHTML = `
+          <span onclick="logPresetDirectly('${p.name}')">🍗 ${p.name}</span>
+          <span class="chip-date">${p.dateCreated || "Prep"}</span>
+          <span class="chip-del" onclick="deletePreset(event, '${p.name}')">✕</span>
+        `;
+        list.appendChild(chip);
+      });
+    }
+
+    async function logPresetDirectly(presetName) {
+      const preset = loadedPresets.find(p => p.name === presetName);
+      if (!preset) return;
+
+      showStatus("loading", `⏳ Logging 1 portion of ${preset.name}...`);
+      try {
+        const res = await fetch(SCRIPT_URL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({ action: "quickAddPreset", preset: preset })
+        });
+        const data = await res.json();
+        showStatus("success", "✅ " + data.message);
+        if (dashboardVisible) fetchStats();
+      } catch (err) {
+        showStatus("error", "❌ " + err.message);
+      }
+    }
+
+    async function deletePreset(e, presetName) {
+      e.stopPropagation();
+      if (!confirm(`Remove "${presetName}" from active preps?`)) return;
+
+      try {
+        await fetch(SCRIPT_URL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({ action: "deletePreset", presetName: presetName })
+        });
+        loadedPresets = loadedPresets.filter(p => p.name !== presetName);
+        renderPresetChips();
+      } catch (err) {
+        alert("Failed to delete preset: " + err.message);
+      }
     }
 
     function handlePhotoSelect(input) {
@@ -390,7 +593,6 @@
         selectedImageBase64 = reader.result.split(',')[1];
         document.getElementById("photoPreview").src = reader.result;
         document.getElementById("photoPreviewContainer").style.display = "block";
-        document.getElementById("submitBtn").classList.add("ready-send");
       };
       reader.readAsDataURL(file);
     }
@@ -453,11 +655,14 @@
     }
 
     async function sendEntry(payload) {
-      showStatus("loading", "⏳ Processing with Gemini (" + (currentMode === "quick" ? "Direct Logging" : "Coach Mode") + ")...");
-      document.getElementById("coachReviewCard").style.display = "none";
+      showStatus("loading", `⏳ Processing with Gemini (${currentMode === "prep" ? "Meal Prep Mode" : (reviewEnabled ? "Review Mode" : "Direct Log")})...`);
+      document.getElementById("reviewCard").style.display = "none";
 
       try {
-        let body = { mode: currentMode };
+        let body = { 
+          mode: currentMode,
+          review: reviewEnabled
+        };
 
         if (payload.text) body.text = payload.text;
         if (selectedImageBase64) {
@@ -483,16 +688,19 @@
         const data = await res.json();
 
         if (data.status === "success") {
-          if (currentMode === "quick") {
+          if (currentMode === "prep") {
+            showStatus("success", "✅ " + data.message);
+            resetInputs();
+            fetchPresets();
+          } else if (!reviewEnabled) {
             showStatus("success", "✅ " + data.message);
             resetInputs();
             if (dashboardVisible) fetchStats();
           } else {
-            // Coach mode: display review card
-            showStatus("success", "✅ Gemini reviewed your entry.");
+            // Review mode: Populate editable card
+            showStatus("success", "✅ Parsed. Review & adjust numbers below before logging.");
             pendingParsedData = data.parsed;
-            document.getElementById("coachText").innerText = data.followUp;
-            document.getElementById("coachReviewCard").style.display = "block";
+            populateReviewCard(data.transcript, data.parsed);
           }
         } else {
           showStatus("error", "❌ " + data.message);
@@ -502,8 +710,53 @@
       }
     }
 
+    function populateReviewCard(transcript, parsed) {
+      document.getElementById("reviewTranscript").innerText = transcript || "No spoken audio transcribed.";
+      const itemsContainer = document.getElementById("editableItemsContainer");
+      itemsContainer.innerHTML = "";
+
+      if (parsed.intakeEvents && parsed.intakeEvents.length > 0) {
+        parsed.intakeEvents.forEach((item, index) => {
+          const box = document.createElement("div");
+          box.style.marginBottom = "10px";
+          box.innerHTML = `
+            <div style="font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 6px;">
+              <input type="text" value="${item.item || ''}" id="item_name_${index}" style="width: 100%; background: #0d0f13; border: 1px solid #272b38; padding: 6px 8px; color: white; border-radius: 6px;">
+            </div>
+            <div class="edit-grid">
+              <div class="edit-field"><label>Kcal</label><input type="number" value="${item.calories || 0}" id="item_cal_${index}"></div>
+              <div class="edit-field"><label>Prot</label><input type="number" value="${item.protein || 0}" id="item_pro_${index}"></div>
+              <div class="edit-field"><label>Carb</label><input type="number" value="${item.carbs || 0}" id="item_carb_${index}"></div>
+              <div class="edit-field"><label>Fat</label><input type="number" value="${item.fat || 0}" id="item_fat_${index}"></div>
+            </div>
+          `;
+          itemsContainer.appendChild(box);
+        });
+      }
+
+      document.getElementById("reviewCard").style.display = "block";
+    }
+
     async function confirmWriteToSheet() {
       if (!pendingParsedData) return;
+
+      // Extract user edits back into pendingParsedData
+      if (pendingParsedData.intakeEvents && pendingParsedData.intakeEvents.length > 0) {
+        pendingParsedData.intakeEvents.forEach((item, index) => {
+          const nameInput = document.getElementById(`item_name_${index}`);
+          const calInput = document.getElementById(`item_cal_${index}`);
+          const proInput = document.getElementById(`item_pro_${index}`);
+          const carbInput = document.getElementById(`item_carb_${index}`);
+          const fatInput = document.getElementById(`item_fat_${index}`);
+
+          if (nameInput) item.item = nameInput.value;
+          if (calInput) item.calories = parseFloat(calInput.value) || 0;
+          if (proInput) item.protein = parseFloat(proInput.value) || 0;
+          if (carbInput) item.carbs = parseFloat(carbInput.value) || 0;
+          if (fatInput) item.fat = parseFloat(fatInput.value) || 0;
+        });
+      }
+
       showStatus("loading", "⏳ Writing confirmed data to your spreadsheet...");
 
       try {
@@ -516,7 +769,7 @@
 
         if (data.status === "success") {
           showStatus("success", "✅ " + data.message);
-          document.getElementById("coachReviewCard").style.display = "none";
+          document.getElementById("reviewCard").style.display = "none";
           resetInputs();
           if (dashboardVisible) fetchStats();
         } else {
@@ -551,9 +804,6 @@
         document.getElementById("valFat").innerText = stats.fat + "g";
         document.getElementById("valWater").innerText = stats.water;
         document.getElementById("valCoffee").innerText = stats.coffee;
-        document.getElementById("valSleep").innerText = stats.sleep ? stats.sleep + "h" : "-";
-        document.getElementById("valWeight").innerText = stats.weight || "-";
-        document.getElementById("valSteps").innerText = stats.steps || "-";
       } catch (e) {}
     }
 

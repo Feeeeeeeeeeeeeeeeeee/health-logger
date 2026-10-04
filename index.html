@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Tracker Scribe</title>
+  <style>
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #0b0d10;
+      color: #f3f4f6;
+      margin: 0;
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .container {
+      width: 100%;
+      max-width: 480px;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      margin: 0;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+    }
+    .accent-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #e11d48;
+      border-radius: 50%;
+      margin-left: 6px;
+      box-shadow: 0 0 8px #e11d48;
+    }
+    
+    /* Main Input Card */
+    .input-card {
+      background: #14171d;
+      border: 1px solid #232733;
+      padding: 22px 18px;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Voice Button */
+    #micBtn {
+      width: 100%;
+      padding: 18px;
+      font-size: 17px;
+      font-weight: 700;
+      color: #ffffff;
+      background: #e11d48;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 4px 16px rgba(225, 29, 72, 0.4);
+      transition: all 0.15s ease;
+    }
+    #micBtn.recording {
+      background: #991b1b;
+      animation: pulse 1.2s infinite;
+    }
+    #micBtn:disabled { opacity: 0.5; cursor: not-allowed; animation: none; }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin: 20px 0;
+      color: #6b7280;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid #262933;
+    }
+    .divider::before { margin-right: 12px; }
+    .divider::after { margin-left: 12px; }
+
+    /* Text Area */
+    textarea {
+      width: 100%;
+      height: 110px;
+      padding: 14px;
+      border: 1px solid #272b38;
+      border-radius: 10px;
+      font-size: 16px;
+      line-height: 1.4;
+      background: #0d0f13;
+      color: #f3f4f6;
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    textarea:focus { border-color: #e11d48; }
+    textarea::placeholder { color: #4b5563; }
+
+    #textBtn {
+      width: 100%;
+      margin-top: 10px;
+      padding: 14px;
+      background: #1f232d;
+      color: #f3f4f6;
+      border: 1px solid #303544;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    #textBtn:hover { background: #272d3a; }
+    #textBtn:active { transform: scale(0.98); }
+    #textBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* Status Banner */
+    #status {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 10px;
+      font-size: 14px;
+      line-height: 1.4;
+      display: none;
+      white-space: pre-wrap;
+    }
+    .status-loading { display: block !important; background: #2b2114; color: #fde047; border: 1px solid #4a3810; }
+    .status-success { display: block !important; background: #11261d; color: #4ade80; border: 1px solid #17452d; }
+    .status-error { display: block !important; background: #311317; color: #fb7185; border: 1px solid #5a1c24; }
+
+    /* Coaching / Follow-up Card */
+    #followUpCard {
+      display: none;
+      margin-top: 14px;
+      background: #1a1216;
+      border: 1px solid #881337;
+      padding: 16px;
+      border-radius: 12px;
+    }
+    .follow-up-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #fb7185;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+    }
+    .follow-up-text {
+      color: #fff1f2;
+      font-size: 15px;
+      line-height: 1.45;
+      font-weight: 500;
+    }
+
+    /* Collapsible Dashboard Toggle */
+    .toggle-btn {
+      width: 100%;
+      margin-top: 24px;
+      padding: 13px;
+      background: transparent;
+      color: #9ca3af;
+      border: 1px dashed #2b303d;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.15s ease;
+    }
+    .toggle-btn:hover { background: #14171d; color: #f3f4f6; border-color: #3b4254; }
+
+    /* Collapsible Dashboard */
+    #dashboardSection {
+      display: none;
+      margin-top: 14px;
+    }
+    .stats-card {
+      background: #14171d;
+      border: 1px solid #232733;
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 12px;
+    }
+    .stats-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #e11d48;
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .stats-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .stats-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 8px; }
+    .stats-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 8px; }
+    
+    .stat-box {
+      background: #0d0f13;
+      padding: 10px 6px;
+      border-radius: 8px;
+      text-align: center;
+      border: 1px solid #1a1e27;
+    }
+    .stat-val { font-size: 16px; font-weight: 700; color: #f9fafb; }
+    .stat-val.highlight { color: #fb7185; }
+    .stat-lbl {
+      font-size: 10px;
+      color: #8b92a1;
+      text-transform: uppercase;
+      margin-top: 3px;
+      letter-spacing: 0.05em;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.6; }
+      100% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Tracker Scribe<span class="accent-dot"></span></h1>
+      <span id="dateLabel" style="font-size: 13px; color: #8b92a1; font-weight: 500;">Today</span>
+    </div>
+
+    <!-- PRIMARY FOCUS: INPUT CARD -->
+    <div class="input-card">
+      <button id="micBtn" type="button" onclick="toggleRecord()">🎙️ Record Voice Note</button>
+
+      <div class="divider">or type manually</div>
+
+      <textarea id="logInput" placeholder="e.g. Drank 500 mL water, had 2 eggs and toast. Satiety 4."></textarea>
+      <button id="textBtn" type="button" onclick="submitText()">Log Text Entry</button>
+
+      <div id="status"></div>
+
+      <!-- GEMINI COACHING / FOLLOW-UP CARD -->
+      <div id="followUpCard">
+        <div class="follow-up-header">
+          <span>💬 Gemini Check-in</span>
+        </div>
+        <div class="follow-up-text" id="followUpText"></div>
+      </div>
+    </div>
+
+    <!-- COLLAPSIBLE DASHBOARD TOGGLE -->
+    <button class="toggle-btn" id="toggleBtn" onclick="toggleDashboard()">
+      <span>📊</span> <span id="toggleText">View Today's Stats</span>
+    </button>
+
+    <!-- DASHBOARD CONTAINER (HIDDEN BY DEFAULT) -->
+    <div id="dashboardSection">
+      <!-- Nutrition & Hydration -->
+      <div class="stats-card">
+        <div class="stats-title">
+          <span>Nutrition & Hydration</span>
+          <span id="syncStatus" style="font-size: 11px; text-transform: none; color: #6b7280; font-weight: normal;">Live</span>
+        </div>
+        <div class="stats-grid-4">
+          <div class="stat-box">
+            <div class="stat-val highlight" id="valCalories">-</div>
+            <div class="stat-lbl">Calories</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-val" id="valProtein">-</div>
+            <div class="stat-lbl">Protein</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-val" id="valCarbs">-</div>
+            <div class="stat-lbl">Carbs</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-val" id="valFat">-</div>
+            <div class="stat-lbl">Fat</div>
+          </div>
+        </div>
+        <div class="stats-grid-2">
+          <div class="stat-box">
+            <div class="stat-val" id="valWater">-</div>
+            <div class="stat-lbl">Water (L)</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-val" id="valCoffee">-</div>
+            <div class="stat-lbl">Coffees</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vitals & Daily Baseline -->
+      <div class="stats-card">
+        <div class="stats-title">
+          <span>Vitals & Sleep Baseline</span>
+        </div>
+        <div class="stats-grid-3">
+          <div class="stat-box">
+            <div class="stat-val" id="valSleep">-</div>
+            <div class="stat-lbl">Sleep (Hrs)</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-val" id="valWeight">-</div>
+            <div class="stat-lbl">Weight (kg)</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-val" id="valSteps">-</div>
+            <div class="stat-lbl">Steps</div>
+          </div>
+        </div>
+        <div class="stats-grid-3">
+          <div class="stat-box">
+            <div class="stat-val" id="valBodyFat">-</div>
+            <div class="stat-lbl">Body Fat %</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-val" id="valMuscle">-</div>
+            <div class="stat-lbl">Muscle (kg)</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-val" id="valAffect">-</div>
+            <div class="stat-lbl">Affect</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwPKUPfGutBNhtfcy5PJaZYMQhX36mTYsWIfwcSccIgXZNoQg6aOAffgakFatTbti5p/exec";
+
+    let mediaRecorder = null;
+    let audioChunks = [];
+    let isRecording = false;
+    let dashboardVisible = false;
+
+    function toggleDashboard() {
+      dashboardVisible = !dashboardVisible;
+      const dash = document.getElementById("dashboardSection");
+      const toggleText = document.getElementById("toggleText");
+      if (dashboardVisible) {
+        dash.style.display = "block";
+        toggleText.innerText = "Hide Today's Stats";
+        fetchStats();
+      } else {
+        dash.style.display = "none";
+        toggleText.innerText = "View Today's Stats";
+      }
+    }
+
+    async function fetchStats() {
+      document.getElementById("syncStatus").innerText = "Refreshing...";
+      try {
+        const res = await fetch(SCRIPT_URL + "?action=getStats");
+        const stats = await res.json();
+        updateDashboardUI(stats);
+      } catch (err) {
+        document.getElementById("syncStatus").innerText = "Sync paused";
+      }
+    }
+
+    function updateDashboardUI(stats) {
+      document.getElementById("valCalories").innerText = stats.calories;
+      document.getElementById("valProtein").innerText = stats.protein + "g";
+      document.getElementById("valCarbs").innerText = stats.carbs + "g";
+      document.getElementById("valFat").innerText = stats.fat + "g";
+      document.getElementById("valWater").innerText = stats.water;
+      document.getElementById("valCoffee").innerText = stats.coffee;
+      
+      document.getElementById("valSleep").innerText = stats.sleep ? stats.sleep + "h" : "-";
+      document.getElementById("valWeight").innerText = stats.weight || "-";
+      document.getElementById("valSteps").innerText = stats.steps || "-";
+      document.getElementById("valBodyFat").innerText = stats.bodyFat ? stats.bodyFat + "%" : "-";
+      document.getElementById("valMuscle").innerText = stats.muscle || "-";
+      document.getElementById("valAffect").innerText = stats.affect || "-";
+
+      document.getElementById("syncStatus").innerText = "Updated " + stats.updatedAt;
+    }
+
+    function showStatus(type, msg) {
+      const status = document.getElementById("status");
+      status.className = "status-" + type;
+      status.innerText = msg;
+    }
+
+    async function toggleRecord() {
+      if (isRecording) {
+        stopRecording();
+      } else {
+        startRecording();
+      }
+    }
+
+    async function startRecording() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        
+        let mimeType = 'audio/webm';
+        if (!MediaRecorder.isTypeSupported('audio/webm')) {
+          if (MediaRecorder.isTypeSupported('audio/mp4')) mimeType = 'audio/mp4';
+          else mimeType = '';
+        }
+
+        mediaRecorder = mimeType ? new MediaRecorder(stream, { mimeType }) : new MediaRecorder(stream);
+        audioChunks = [];
+
+        mediaRecorder.ondataavailable = event => {
+          if (event.data.size > 0) audioChunks.push(event.data);
+        };
+
+        mediaRecorder.onstop = () => {
+          stream.getTracks().forEach(track => track.stop());
+          const blob = new Blob(audioChunks, { type: mediaRecorder.mimeType || 'audio/webm' });
+          sendPayload({ audio: blob });
+        };
+
+        mediaRecorder.start();
+        isRecording = true;
+        const btn = document.getElementById("micBtn");
+        btn.innerText = "⏹️ Stop & Send Audio";
+        btn.classList.add("recording");
+        showStatus("loading", "🔴 Recording... Speak naturally.");
+      } catch (err) {
+        console.error(err);
+        showStatus("error", "⚠️ Microphone access error: " + err.message);
+      }
+    }
+
+    function stopRecording() {
+      if (mediaRecorder && mediaRecorder.state !== "inactive") {
+        mediaRecorder.stop();
+      }
+      isRecording = false;
+      const btn = document.getElementById("micBtn");
+      btn.innerText = "⏳ Uploading Audio...";
+      btn.classList.remove("recording");
+      btn.disabled = true;
+    }
+
+    function submitText() {
+      const text = document.getElementById("logInput").value.trim();
+      if (!text) {
+        showStatus("error", "⚠️ Please enter text or record a note.");
+        return;
+      }
+      sendPayload({ text: text });
+    }
+
+    async function sendPayload(payload) {
+      const micBtn = document.getElementById("micBtn");
+      const textBtn = document.getElementById("textBtn");
+      const followUpCard = document.getElementById("followUpCard");
+      followUpCard.style.display = "none";
+
+      micBtn.disabled = true;
+      textBtn.disabled = true;
+
+      try {
+        let requestBody = {};
+
+        if (payload.audio) {
+          showStatus("loading", "⏳ Gemini is listening to your audio and updating your Sheet...");
+          const base64Data = await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result.split(',')[1]);
+            reader.readAsDataURL(payload.audio);
+          });
+          requestBody = {
+            audio: base64Data,
+            mimeType: payload.audio.type.split(';')[0] || 'audio/webm'
+          };
+        } else {
+          showStatus("loading", "⏳ Parsing text with Gemini and updating Sheet...");
+          requestBody = { text: payload.text };
+        }
+
+        const response = await fetch(SCRIPT_URL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(requestBody)
+        });
+
+        const result = await response.json();
+
+        if (result.status === "success") {
+          showStatus("success", "✅ " + result.message);
+          document.getElementById("logInput").value = "";
+          
+          if (result.followUp) {
+            document.getElementById("followUpText").innerText = result.followUp;
+            followUpCard.style.display = "block";
+          }
+          
+          if (dashboardVisible) fetchStats();
+        } else {
+          showStatus("error", "❌ Error: " + result.message);
+        }
+      } catch (err) {
+        showStatus("error", "❌ Network Error: " + err.message + "\\n\\nCheck Apps Script deployment access is set to 'Anyone'.");
+      } finally {
+        micBtn.disabled = false;
+        textBtn.disabled = false;
+        micBtn.innerText = "🎙️ Record Voice Note";
+      }
+    }
+  </script>
+</body>
+</html>

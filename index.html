@@ -11,7 +11,7 @@
       background-color: #0b0d10;
       color: #f3f4f6;
       margin: 0;
-      padding: 18px 14px;
+      padding: 16px 14px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -41,7 +41,7 @@
       box-shadow: 0 0 8px #e11d48;
     }
 
-    /* Mode & Global Review Controls */
+    /* Controls: Mode + Review Toggle */
     .controls-row {
       display: flex;
       gap: 8px;
@@ -67,13 +67,9 @@
       cursor: pointer;
       text-align: center;
     }
-    .mode-btn.active {
-      background: #232733;
-      color: #ffffff;
-    }
+    .mode-btn.active { background: #232733; color: #ffffff; }
     .mode-btn.active.prep { color: #38bdf8; }
 
-    /* Review Toggle Button */
     .review-toggle-btn {
       padding: 8px 12px;
       background: #14171d;
@@ -93,7 +89,7 @@
       background: #1e1317;
     }
 
-    /* Active Preps Chips Row */
+    /* Active Preps Chips */
     .preps-container {
       margin-bottom: 14px;
       background: #14171d;
@@ -108,14 +104,8 @@
       letter-spacing: 0.06em;
       color: #9ca3af;
       margin-bottom: 8px;
-      display: flex;
-      justify-content: space-between;
     }
-    .chips-scroll {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
+    .chips-scroll { display: flex; flex-wrap: wrap; gap: 8px; }
     .chip {
       background: #1e232d;
       border: 1px solid #333a4a;
@@ -129,7 +119,6 @@
       gap: 8px;
       cursor: pointer;
     }
-    .chip:hover { border-color: #38bdf8; }
     .chip-date {
       font-size: 11px;
       color: #94a3b8;
@@ -137,86 +126,95 @@
       padding: 2px 6px;
       border-radius: 10px;
     }
-    .chip-del {
-      color: #ef4444;
-      font-weight: bold;
-      font-size: 14px;
-      padding: 0 4px;
-      cursor: pointer;
-    }
+    .chip-del { color: #ef4444; font-weight: bold; font-size: 14px; padding: 0 4px; cursor: pointer; }
 
-    /* Main Card */
+    /* Input Card */
     .input-card {
       background: #14171d;
       border: 1px solid #232733;
-      padding: 18px 14px;
+      padding: 16px 14px;
       border-radius: 16px;
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
     }
     .action-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 6px;
       margin-bottom: 12px;
     }
     #micBtn {
-      padding: 15px 10px;
-      font-size: 15px;
+      padding: 12px 6px;
+      font-size: 13px;
       font-weight: 700;
       color: #ffffff;
       background: #e11d48;
       border: none;
-      border-radius: 12px;
+      border-radius: 10px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      box-shadow: 0 4px 14px rgba(225, 29, 72, 0.35);
+      gap: 4px;
+      box-shadow: 0 4px 12px rgba(225, 29, 72, 0.3);
     }
     #micBtn.recording { background: #991b1b; animation: pulse 1.2s infinite; }
-    .photo-label {
-      padding: 15px 10px;
-      font-size: 15px;
-      font-weight: 700;
+    
+    .media-btn-label {
+      padding: 12px 6px;
+      font-size: 13px;
+      font-weight: 600;
       color: #ffffff;
       background: #1f242f;
       border: 1px solid #323846;
-      border-radius: 12px;
+      border-radius: 10px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 4px;
+      text-align: center;
     }
     input[type="file"] { display: none; }
 
-    #photoPreviewContainer {
+    #filePreviewTray {
       display: none;
-      position: relative;
+      flex-wrap: wrap;
+      gap: 8px;
       margin-bottom: 12px;
+      padding: 8px;
+      background: #0d0f13;
+      border: 1px dashed #272b38;
       border-radius: 10px;
+    }
+    .preview-thumb {
+      position: relative;
+      width: 70px;
+      height: 70px;
+      border-radius: 8px;
       overflow: hidden;
       border: 1px solid #374151;
-      max-height: 160px;
     }
-    #photoPreview { width: 100%; height: 160px; object-fit: cover; display: block; }
-    #removePhotoBtn {
+    .preview-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .preview-thumb .remove-btn {
       position: absolute;
-      top: 6px;
-      right: 6px;
-      background: rgba(0, 0, 0, 0.75);
+      top: 2px;
+      right: 2px;
+      background: rgba(0, 0, 0, 0.8);
       color: white;
       border: none;
-      border-radius: 16px;
-      padding: 4px 10px;
-      font-size: 12px;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
     }
 
     textarea {
       width: 100%;
-      height: 90px;
+      height: 85px;
       padding: 12px;
       border: 1px solid #272b38;
       border-radius: 10px;
@@ -237,7 +235,7 @@
       color: #f3f4f6;
       border: 1px solid #303544;
       border-radius: 10px;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 700;
       cursor: pointer;
     }
@@ -249,7 +247,7 @@
     button:disabled { opacity: 0.5; cursor: not-allowed; }
 
     #status {
-      margin-top: 14px;
+      margin-top: 12px;
       padding: 12px 14px;
       border-radius: 10px;
       font-size: 14px;
@@ -261,13 +259,67 @@
     .status-success { display: block !important; background: #11261d; color: #4ade80; border: 1px solid #17452d; }
     .status-error { display: block !important; background: #311317; color: #fb7185; border: 1px solid #5a1c24; }
 
+    /* VALUES COMPASS CARD */
+    .compass-card {
+      margin-top: 16px;
+      background: #14171d;
+      border: 1px solid #232733;
+      border-radius: 16px;
+      padding: 16px 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    }
+    .compass-header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #9ca3af;
+      font-weight: 700;
+    }
+    .compass-wrapper {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      margin: 4px 0 10px 0;
+    }
+    .compass-svg {
+      width: 100%;
+      height: 100%;
+      transform-origin: center;
+    }
+    .compass-needle {
+      transform-origin: 75px 75px;
+      transition: transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .compass-badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid #10b981;
+      color: #10b981;
+      margin-top: 6px;
+      max-width: 95%;
+      line-height: 1.35;
+    }
+
     /* EDITABLE REVIEW CARD */
     #reviewCard {
       display: none;
-      margin-top: 16px;
+      margin-top: 14px;
       background: #161a22;
       border: 1px solid #2f3647;
-      padding: 16px;
+      padding: 14px;
       border-radius: 12px;
     }
     .review-header {
@@ -276,7 +328,7 @@
       text-transform: uppercase;
       letter-spacing: 0.06em;
       color: #fb7185;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     .review-transcript-box {
       background: #0d0f13;
@@ -288,31 +340,29 @@
       margin-bottom: 12px;
       outline: none;
     }
-    .review-transcript-box:focus { border-color: #38bdf8; color: #f3f4f6; }
+    .review-subhead {
+      font-size: 11px;
+      font-weight: 700;
+      color: #38bdf8;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin: 10px 0 6px 0;
+    }
     .edit-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 6px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
-    .edit-field {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .edit-field label {
-      font-size: 10px;
-      text-transform: uppercase;
-      color: #9ca3af;
-      font-weight: 600;
-    }
+    .edit-field { display: flex; flex-direction: column; gap: 3px; }
+    .edit-field label { font-size: 10px; text-transform: uppercase; color: #9ca3af; font-weight: 600; }
     .edit-field input {
       background: #0d0f13;
       border: 1px solid #272b38;
       border-radius: 6px;
       padding: 8px 4px;
       color: #fff;
-      font-size: 14px;
+      font-size: 13px;
       text-align: center;
       outline: none;
     }
@@ -320,6 +370,7 @@
 
     #confirmWriteBtn {
       width: 100%;
+      margin-top: 10px;
       padding: 14px;
       background: #16a34a;
       color: white;
@@ -333,7 +384,7 @@
     /* Collapsible Dashboard */
     .toggle-btn {
       width: 100%;
-      margin-top: 18px;
+      margin-top: 16px;
       padding: 12px;
       background: transparent;
       color: #9ca3af;
@@ -347,13 +398,13 @@
       justify-content: center;
       gap: 6px;
     }
-    #dashboardSection { display: none; margin-top: 14px; }
+    #dashboardSection { display: none; margin-top: 12px; }
     .stats-card {
       background: #14171d;
       border: 1px solid #232733;
       border-radius: 14px;
       padding: 16px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
     .stats-title {
       font-size: 11px;
@@ -388,7 +439,7 @@
       <span style="font-size: 13px; color: #8b92a1;">Today</span>
     </div>
 
-    <!-- Controls Row: Mode Selector + Global Review Toggle -->
+    <!-- Controls: Mode Selector + Global Review Toggle -->
     <div class="controls-row">
       <div class="mode-selector">
         <button class="mode-btn active" id="modeLog" onclick="setMode('log')">⚡ Daily Log</button>
@@ -401,28 +452,27 @@
 
     <!-- Active Meal Prep Chips -->
     <div class="preps-container" id="prepsContainer" style="display: none;">
-      <div class="preps-label">
-        <span>Active Fridge Preps (Tap to Log 1 Portion)</span>
-      </div>
+      <div class="preps-label">Active Fridge Preps (Tap to Log 1 Portion)</div>
       <div class="chips-scroll" id="prepsList"></div>
     </div>
 
     <!-- Input Card -->
     <div class="input-card">
       <div class="action-grid">
-        <button id="micBtn" type="button" onclick="toggleRecord()">🎙️ Voice Note</button>
-        <label class="photo-label">
-          <input type="file" id="cameraInput" accept="image/*" capture="environment" onchange="handlePhotoSelect(this)">
-          📸 Take Photo
+        <button id="micBtn" type="button" onclick="toggleRecord()">🎙️ Voice</button>
+        <label class="media-btn-label">
+          <input type="file" id="fileInput" accept="image/*,application/pdf" multiple onchange="handleFilesSelect(this)">
+          📎 Files
+        </label>
+        <label class="media-btn-label">
+          <input type="file" id="cameraInput" accept="image/*" capture="environment" onchange="handleFilesSelect(this)">
+          📸 Camera
         </label>
       </div>
 
-      <div id="photoPreviewContainer">
-        <img id="photoPreview" src="" alt="Meal preview">
-        <button id="removePhotoBtn" type="button" onclick="clearPhoto()">✕ Remove</button>
-      </div>
+      <div id="filePreviewTray"></div>
 
-      <textarea id="logInput" placeholder="Describe entry or dictate details..."></textarea>
+      <textarea id="logInput" placeholder="Add notes (e.g. 'Morning workout and steps' or 500 mL water)..."></textarea>
       
       <button id="submitBtn" type="button" onclick="submitEntry()">Send to Sheet</button>
 
@@ -432,13 +482,56 @@
       <div id="reviewCard">
         <div class="review-header">📝 Review & Edit Before Logging</div>
         
-        <label style="font-size: 10px; color: #94a3b8; text-transform: uppercase;">Transcript / Heard Notes</label>
+        <label style="font-size: 10px; color: #94a3b8; text-transform: uppercase;">Transcript / Extracted Summary</label>
         <div class="review-transcript-box" id="reviewTranscript" contenteditable="true"></div>
 
+        <div id="editableDailyContextContainer"></div>
         <div id="editableItemsContainer"></div>
 
         <button id="confirmWriteBtn" type="button" onclick="confirmWriteToSheet()">✅ Confirm & Log to Sheet</button>
       </div>
+    </div>
+
+    <!-- VALUES COMPASS CARD -->
+    <div class="compass-card">
+      <div class="compass-header">
+        <span>Values Compass</span>
+        <span id="compassRollingLabel" style="font-weight: 500; color: #6b7280;">7-Day Vector</span>
+      </div>
+
+      <div class="compass-wrapper">
+        <svg class="compass-svg" viewBox="0 0 150 150">
+          <!-- Dial Ring -->
+          <circle cx="75" cy="75" r="68" fill="#0d0f13" stroke="#232733" stroke-width="2"/>
+          <circle cx="75" cy="75" r="56" fill="none" stroke="#1a1e27" stroke-dasharray="3,3" stroke-width="1.5"/>
+
+          <!-- Cardinal Labels -->
+          <!-- North (Anchor/Rest) -->
+          <text x="75" y="24" fill="#9ca3af" font-size="10" font-weight="700" text-anchor="middle">N</text>
+          <!-- East (Values / Land Ho!) -->
+          <text x="134" y="78" fill="#10b981" font-size="11" font-weight="900" text-anchor="middle">E</text>
+          <!-- South -->
+          <text x="75" y="138" fill="#6b7280" font-size="10" font-weight="600" text-anchor="middle">S</text>
+          <!-- West (Drift) -->
+          <text x="18" y="78" fill="#6b7280" font-size="10" font-weight="600" text-anchor="middle">W</text>
+
+          <!-- Eastward Highlight Arc -->
+          <path d="M 75 19 A 56 56 0 0 1 131 75" fill="none" stroke="#10b981" stroke-width="2" opacity="0.4"/>
+
+          <!-- Center Pivot -->
+          <circle cx="75" cy="75" r="5" fill="#f3f4f6"/>
+
+          <!-- The Compass Needle -->
+          <g id="compassNeedleGroup" class="compass-needle" style="transform: rotate(90deg);">
+            <!-- North-Pointing Tip (Red Accent) -->
+            <polygon points="75,28 80,75 75,70 70,75" fill="#e11d48"/>
+            <!-- Counterbalance Tail (Darker) -->
+            <polygon points="75,115 78,75 75,70 72,75" fill="#475569"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="compass-badge" id="compassBadge">Calculating heading...</div>
     </div>
 
     <!-- Collapsible Dashboard -->
@@ -469,10 +562,9 @@
   <script>
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwPKUPfGutBNhtfcy5PJaZYMQhX36mTYsWIfwcSccIgXZNoQg6aOAffgakFatTbti5p/exec";
 
-    let currentMode = "log"; // "log" or "prep"
+    let currentMode = "log";
     let reviewEnabled = true;
-    let selectedImageBase64 = null;
-    let selectedImageMime = "image/jpeg";
+    let selectedFiles = [];
     let pendingParsedData = null;
     let loadedPresets = [];
     
@@ -483,6 +575,7 @@
 
     window.addEventListener("DOMContentLoaded", () => {
       fetchPresets();
+      fetchCompassHeading();
     });
 
     function setMode(mode) {
@@ -498,7 +591,7 @@
       } else {
         submitBtn.innerText = reviewEnabled ? "Review Entry" : "Send to Sheet";
         submitBtn.classList.remove("prep-active");
-        document.getElementById("logInput").placeholder = "Describe entry or dictate details...";
+        document.getElementById("logInput").placeholder = "Add notes (e.g. 'Morning workout and steps' or 500 mL water)...";
       }
       document.getElementById("reviewCard").style.display = "none";
     }
@@ -511,6 +604,24 @@
       text.innerText = reviewEnabled ? "ON" : "OFF";
       if (currentMode === "log") {
         document.getElementById("submitBtn").innerText = reviewEnabled ? "Review Entry" : "Send to Sheet";
+      }
+    }
+
+    async function fetchCompassHeading() {
+      try {
+        const res = await fetch(SCRIPT_URL + "?action=getCompass");
+        const data = await res.json();
+        
+        const needle = document.getElementById("compassNeedleGroup");
+        const badge = document.getElementById("compassBadge");
+        
+        needle.style.transform = `rotate(${data.bearing}deg)`;
+        badge.innerText = data.phrase;
+        badge.style.color = data.badgeColor;
+        badge.style.borderColor = data.badgeColor;
+        badge.style.background = `${data.badgeColor}18`;
+      } catch (err) {
+        console.error("Compass load error:", err);
       }
     }
 
@@ -561,6 +672,7 @@
         const data = await res.json();
         showStatus("success", "✅ " + data.message);
         if (dashboardVisible) fetchStats();
+        fetchCompassHeading();
       } catch (err) {
         showStatus("error", "❌ " + err.message);
       }
@@ -583,25 +695,48 @@
       }
     }
 
-    function handlePhotoSelect(input) {
-      const file = input.files[0];
-      if (!file) return;
+    function handleFilesSelect(input) {
+      const files = Array.from(input.files);
+      if (!files.length) return;
 
-      selectedImageMime = file.type || "image/jpeg";
-      const reader = new FileReader();
-      reader.onloadend = function() {
-        selectedImageBase64 = reader.result.split(',')[1];
-        document.getElementById("photoPreview").src = reader.result;
-        document.getElementById("photoPreviewContainer").style.display = "block";
-      };
-      reader.readAsDataURL(file);
+      files.forEach(file => {
+        const reader = new FileReader();
+        reader.onloadend = function() {
+          selectedFiles.push({
+            data: reader.result.split(',')[1],
+            mimeType: file.type || "image/jpeg",
+            previewUrl: reader.result
+          });
+          renderFilePreviews();
+        };
+        reader.readAsDataURL(file);
+      });
+      input.value = "";
     }
 
-    function clearPhoto() {
-      selectedImageBase64 = null;
-      document.getElementById("cameraInput").value = "";
-      document.getElementById("photoPreviewContainer").style.display = "none";
-      document.getElementById("photoPreview").src = "";
+    function renderFilePreviews() {
+      const tray = document.getElementById("filePreviewTray");
+      tray.innerHTML = "";
+      if (!selectedFiles.length) {
+        tray.style.display = "none";
+        return;
+      }
+      tray.style.display = "flex";
+
+      selectedFiles.forEach((file, index) => {
+        const thumb = document.createElement("div");
+        thumb.className = "preview-thumb";
+        thumb.innerHTML = `
+          <img src="${file.previewUrl}">
+          <button class="remove-btn" onclick="removeFile(${index})">✕</button>
+        `;
+        tray.appendChild(thumb);
+      });
+    }
+
+    function removeFile(index) {
+      selectedFiles.splice(index, 1);
+      renderFilePreviews();
     }
 
     async function toggleRecord() {
@@ -629,7 +764,7 @@
         mediaRecorder.start();
         isRecording = true;
         const btn = document.getElementById("micBtn");
-        btn.innerText = "⏹️ Stop Audio";
+        btn.innerText = "⏹️ Stop";
         btn.classList.add("recording");
         showStatus("loading", "🔴 Recording voice... Speak naturally.");
       } catch (err) {
@@ -641,14 +776,14 @@
       if (mediaRecorder && mediaRecorder.state !== "inactive") mediaRecorder.stop();
       isRecording = false;
       const btn = document.getElementById("micBtn");
-      btn.innerText = "🎙️ Voice Note";
+      btn.innerText = "🎙️ Voice";
       btn.classList.remove("recording");
     }
 
     function submitEntry() {
       const text = document.getElementById("logInput").value.trim();
-      if (!text && !selectedImageBase64) {
-        showStatus("error", "⚠️ Please enter text, record voice, or take a photo.");
+      if (!text && selectedFiles.length === 0) {
+        showStatus("error", "⚠️️ Please enter text, record voice, or attach one or more files.");
         return;
       }
       sendEntry({ text: text });
@@ -665,9 +800,9 @@
         };
 
         if (payload.text) body.text = payload.text;
-        if (selectedImageBase64) {
-          body.image = selectedImageBase64;
-          body.imageMimeType = selectedImageMime;
+
+        if (selectedFiles.length > 0) {
+          body.files = selectedFiles.map(f => ({ data: f.data, mimeType: f.mimeType }));
         }
 
         if (payload.audioBlob) {
@@ -696,9 +831,9 @@
             showStatus("success", "✅ " + data.message);
             resetInputs();
             if (dashboardVisible) fetchStats();
+            fetchCompassHeading();
           } else {
-            // Review mode: Populate editable card
-            showStatus("success", "✅ Parsed. Review & adjust numbers below before logging.");
+            showStatus("success", "✅ Parsed. Review & adjust values below before logging.");
             pendingParsedData = data.parsed;
             populateReviewCard(data.transcript, data.parsed);
           }
@@ -711,17 +846,43 @@
     }
 
     function populateReviewCard(transcript, parsed) {
-      document.getElementById("reviewTranscript").innerText = transcript || "No spoken audio transcribed.";
+      document.getElementById("reviewTranscript").innerText = transcript || "No notes transcribed.";
+      
+      const dcContainer = document.getElementById("editableDailyContextContainer");
+      dcContainer.innerHTML = "";
+      if (parsed.dailyContext) {
+        const dc = parsed.dailyContext;
+        const dcBox = document.createElement("div");
+        dcBox.innerHTML = `
+          <div class="review-subhead">Daily Baseline & Tracker Data</div>
+          <div class="edit-grid">
+            <div class="edit-field"><label>Steps</label><input type="number" value="${dc.steps || ''}" id="dc_steps"></div>
+            <div class="edit-field"><label>Water +L</label><input type="number" step="0.1" value="${dc.waterAddedLitres || ''}" id="dc_water"></div>
+            <div class="edit-field"><label>Coffee +</label><input type="number" value="${dc.coffeeAddedCount || ''}" id="dc_coffee"></div>
+            <div class="edit-field"><label>Sleep H</label><input type="number" step="0.1" value="${dc.sleepDuration || ''}" id="dc_sleep"></div>
+          </div>
+          <div class="edit-field" style="margin-bottom: 10px;">
+            <label>Movement / Workout Summary</label>
+            <input type="text" value="${dc.movementSummary || ''}" id="dc_movement" style="text-align: left; padding: 6px 8px;">
+          </div>
+        `;
+        dcContainer.appendChild(dcBox);
+      }
+
       const itemsContainer = document.getElementById("editableItemsContainer");
       itemsContainer.innerHTML = "";
-
       if (parsed.intakeEvents && parsed.intakeEvents.length > 0) {
+        const sub = document.createElement("div");
+        sub.className = "review-subhead";
+        sub.innerText = "Food & Intake Events";
+        itemsContainer.appendChild(sub);
+
         parsed.intakeEvents.forEach((item, index) => {
           const box = document.createElement("div");
-          box.style.marginBottom = "10px";
+          box.style.marginBottom = "8px";
           box.innerHTML = `
-            <div style="font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 6px;">
-              <input type="text" value="${item.item || ''}" id="item_name_${index}" style="width: 100%; background: #0d0f13; border: 1px solid #272b38; padding: 6px 8px; color: white; border-radius: 6px;">
+            <div style="margin-bottom: 4px;">
+              <input type="text" value="${item.item || ''}" id="item_name_${index}" style="width: 100%; background: #0d0f13; border: 1px solid #272b38; padding: 6px 8px; color: white; border-radius: 6px; font-size: 13px;">
             </div>
             <div class="edit-grid">
               <div class="edit-field"><label>Kcal</label><input type="number" value="${item.calories || 0}" id="item_cal_${index}"></div>
@@ -740,7 +901,20 @@
     async function confirmWriteToSheet() {
       if (!pendingParsedData) return;
 
-      // Extract user edits back into pendingParsedData
+      if (pendingParsedData.dailyContext) {
+        const stepsInput = document.getElementById("dc_steps");
+        const waterInput = document.getElementById("dc_water");
+        const coffeeInput = document.getElementById("dc_coffee");
+        const sleepInput = document.getElementById("dc_sleep");
+        const moveInput = document.getElementById("dc_movement");
+
+        if (stepsInput && stepsInput.value !== "") pendingParsedData.dailyContext.steps = parseInt(stepsInput.value, 10);
+        if (waterInput && waterInput.value !== "") pendingParsedData.dailyContext.waterAddedLitres = parseFloat(waterInput.value);
+        if (coffeeInput && coffeeInput.value !== "") pendingParsedData.dailyContext.coffeeAddedCount = parseInt(coffeeInput.value, 10);
+        if (sleepInput && sleepInput.value !== "") pendingParsedData.dailyContext.sleepDuration = parseFloat(sleepInput.value);
+        if (moveInput) pendingParsedData.dailyContext.movementSummary = moveInput.value;
+      }
+
       if (pendingParsedData.intakeEvents && pendingParsedData.intakeEvents.length > 0) {
         pendingParsedData.intakeEvents.forEach((item, index) => {
           const nameInput = document.getElementById(`item_name_${index}`);
@@ -772,6 +946,7 @@
           document.getElementById("reviewCard").style.display = "none";
           resetInputs();
           if (dashboardVisible) fetchStats();
+          fetchCompassHeading();
         } else {
           showStatus("error", "❌ Error: " + data.message);
         }
@@ -782,7 +957,8 @@
 
     function resetInputs() {
       document.getElementById("logInput").value = "";
-      clearPhoto();
+      selectedFiles = [];
+      renderFilePreviews();
       pendingParsedData = null;
     }
 

@@ -326,9 +326,9 @@
       border-radius: 20px;
       font-size: 12px;
       font-weight: 600;
-      background: rgba(16, 185, 129, 0.12);
-      border: 1px solid #10b981;
-      color: #10b981;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid #38bdf8;
+      color: #38bdf8;
       max-width: 90%;
       line-height: 1.35;
     }
@@ -420,11 +420,6 @@
       border-color: #0369a1;
       color: #7dd3fc;
       background: #0c1a24;
-    }
-    .act-btn.done-tagged {
-      border-color: #10b981;
-      color: #6ee7b7;
-      background: #0d1e17;
     }
 
     .latch-close-btn {
@@ -585,7 +580,7 @@
 
       <div id="filePreviewTray"></div>
 
-      <textarea id="logInput" placeholder="Add notes (e.g. 'Morning workout and steps' or 500 mL water)..."></textarea>
+      <textarea id="logInput" placeholder="Add notes (e.g. 'Drumming session and 500 mL water')..."></textarea>
       
       <button id="submitBtn" type="button" onclick="submitEntry()">Send to Sheet</button>
 
@@ -629,7 +624,9 @@
           <text x="18" y="78" fill="#6b7280" font-size="10" font-weight="600" text-anchor="middle">W</text>
           <path d="M 75 19 A 56 56 0 0 1 131 75" fill="none" stroke="#10b981" stroke-width="2" opacity="0.4"/>
           <circle cx="75" cy="75" r="5" fill="#f3f4f6"/>
-          <g id="compassNeedleGroup" class="compass-needle" style="transform: rotate(90deg);">
+          
+          <!-- Neutral default start at 45 deg (Northeast) -->
+          <g id="compassNeedleGroup" class="compass-needle" style="transform: rotate(45deg);">
             <polygon points="75,28 80,75 75,70 70,75" fill="#e11d48"/>
             <polygon points="75,115 78,75 75,70 72,75" fill="#475569"/>
           </g>
@@ -772,7 +769,6 @@
         badge.style.borderColor = data.badgeColor;
         badge.style.background = `${data.badgeColor}18`;
 
-        // Render persistent commitments
         renderPendingShelf(data.pendingIntentions || []);
       } catch (err) {
         console.error("Compass error:", err);

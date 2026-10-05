@@ -259,58 +259,185 @@
     .status-success { display: block !important; background: #11261d; color: #4ade80; border: 1px solid #17452d; }
     .status-error { display: block !important; background: #311317; color: #fb7185; border: 1px solid #5a1c24; }
 
-    /* VALUES COMPASS CARD */
-    .compass-card {
+    /* LATCHED POCKET COMPASS (Closed Bar by Default) */
+    .compass-latch-bar {
+      width: 100%;
       margin-top: 16px;
       background: #14171d;
-      border: 1px solid #232733;
-      border-radius: 16px;
-      padding: 16px 14px;
+      border: 1px solid #2d3446;
+      border-radius: 14px;
+      padding: 14px 16px;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      text-align: center;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
-    }
-    .compass-header {
-      width: 100%;
-      display: flex;
       justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #9ca3af;
-      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
     }
+    .compass-latch-bar:hover {
+      background: #181d27;
+      border-color: #3b455c;
+    }
+    .latch-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #f3f4f6;
+    }
+    .latch-status {
+      font-size: 12px;
+      font-weight: 600;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* UNLATCHED COMPASS DRAWER */
+    #compassDrawer {
+      display: none;
+      width: 100%;
+      background: #14171d;
+      border: 1px solid #2d3446;
+      border-top: none;
+      border-radius: 0 0 16px 16px;
+      padding: 16px 14px 18px 14px;
+      margin-top: -6px;
+      animation: fadeIn 0.25s ease-out;
+    }
+
     .compass-wrapper {
       position: relative;
-      width: 150px;
-      height: 150px;
-      margin: 4px 0 10px 0;
+      width: 140px;
+      height: 140px;
+      margin: 6px auto 10px auto;
     }
-    .compass-svg {
-      width: 100%;
-      height: 100%;
-      transform-origin: center;
-    }
+    .compass-svg { width: 100%; height: 100%; }
     .compass-needle {
       transform-origin: 75px 75px;
       transition: transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     .compass-badge {
-      display: inline-block;
+      display: block;
+      margin: 0 auto 14px auto;
+      text-align: center;
       padding: 6px 12px;
       border-radius: 20px;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
       background: rgba(16, 185, 129, 0.12);
       border: 1px solid #10b981;
       color: #10b981;
-      margin-top: 6px;
-      max-width: 95%;
+      max-width: 90%;
       line-height: 1.35;
+    }
+
+    /* VESSEL LOG SECTION */
+    .vessel-log-section {
+      border-top: 1px solid #232733;
+      padding-top: 14px;
+      margin-top: 10px;
+    }
+    .vessel-subhead {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #9ca3af;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Pending Intentions Shelf */
+    #pendingShelf {
+      display: none;
+      background: #1e1712;
+      border: 1px solid #78350f;
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 12px;
+    }
+    .pending-chip {
+      background: #2b1f14;
+      border: 1px solid #b45309;
+      border-radius: 16px;
+      padding: 6px 10px;
+      font-size: 12px;
+      color: #fde68a;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin: 4px;
+      cursor: pointer;
+    }
+
+    /* Action Groups */
+    .anchor-group {
+      margin-bottom: 12px;
+    }
+    .anchor-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #cbd5e1;
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .anchor-btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .act-btn {
+      background: #0d0f13;
+      border: 1px solid #272b38;
+      border-radius: 8px;
+      padding: 7px 10px;
+      color: #e2e8f0;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.15s ease;
+    }
+    .act-btn:hover { border-color: #475569; background: #161a22; }
+    .act-btn.commit {
+      border-color: #78350f;
+      color: #fcd34d;
+      background: #18130e;
+    }
+    .act-btn.commit:hover { background: #241a10; }
+    .act-btn.danger {
+      border-color: #881337;
+      color: #fb7185;
+      background: #190f13;
+    }
+    .act-btn.rest {
+      border-color: #0369a1;
+      color: #7dd3fc;
+      background: #0c1a24;
+    }
+    .act-btn.done-tagged {
+      border-color: #10b981;
+      color: #6ee7b7;
+      background: #0d1e17;
+    }
+
+    .latch-close-btn {
+      width: 100%;
+      margin-top: 12px;
+      padding: 10px;
+      background: #1f242f;
+      border: 1px solid #333a4a;
+      border-radius: 8px;
+      color: #94a3b8;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
     }
 
     /* EDITABLE REVIEW CARD */
@@ -340,20 +467,7 @@
       margin-bottom: 12px;
       outline: none;
     }
-    .review-subhead {
-      font-size: 11px;
-      font-weight: 700;
-      color: #38bdf8;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin: 10px 0 6px 0;
-    }
-    .edit-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 6px;
-      margin-bottom: 10px;
-    }
+    .edit-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 10px; }
     .edit-field { display: flex; flex-direction: column; gap: 3px; }
     .edit-field label { font-size: 10px; text-transform: uppercase; color: #9ca3af; font-weight: 600; }
     .edit-field input {
@@ -366,8 +480,6 @@
       text-align: center;
       outline: none;
     }
-    .edit-field input:focus { border-color: #e11d48; }
-
     #confirmWriteBtn {
       width: 100%;
       margin-top: 10px;
@@ -430,6 +542,7 @@
     .stat-lbl { font-size: 9px; color: #8b92a1; text-transform: uppercase; margin-top: 2px; }
 
     @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.6; } 100% { opacity: 1; } }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
 <body>
@@ -456,7 +569,7 @@
       <div class="chips-scroll" id="prepsList"></div>
     </div>
 
-    <!-- Input Card -->
+    <!-- Main Input Card -->
     <div class="input-card">
       <div class="action-grid">
         <button id="micBtn" type="button" onclick="toggleRecord()">🎙️ Voice</button>
@@ -492,49 +605,94 @@
       </div>
     </div>
 
-    <!-- VALUES COMPASS CARD -->
-    <div class="compass-card">
-      <div class="compass-header">
-        <span>Values Compass</span>
-        <span id="compassRollingLabel" style="font-weight: 500; color: #6b7280;">7-Day Vector</span>
+    <!-- LATCHED POCKET COMPASS (CLOSED BY DEFAULT) -->
+    <div class="compass-latch-bar" id="compassLatchBar" onclick="toggleCompass()">
+      <div class="latch-title">
+        <span>🧭</span>
+        <span>Pocket Compass</span>
       </div>
+      <div class="latch-status">
+        <span id="latchStatusText">Latched</span>
+        <span id="latchChevron">▼</span>
+      </div>
+    </div>
 
+    <!-- UNLATCHED COMPASS & VESSEL LOG DRAWER -->
+    <div id="compassDrawer">
       <div class="compass-wrapper">
         <svg class="compass-svg" viewBox="0 0 150 150">
-          <!-- Dial Ring -->
           <circle cx="75" cy="75" r="68" fill="#0d0f13" stroke="#232733" stroke-width="2"/>
           <circle cx="75" cy="75" r="56" fill="none" stroke="#1a1e27" stroke-dasharray="3,3" stroke-width="1.5"/>
-
-          <!-- Cardinal Labels -->
-          <!-- North (Anchor/Rest) -->
           <text x="75" y="24" fill="#9ca3af" font-size="10" font-weight="700" text-anchor="middle">N</text>
-          <!-- East (Values / Land Ho!) -->
           <text x="134" y="78" fill="#10b981" font-size="11" font-weight="900" text-anchor="middle">E</text>
-          <!-- South -->
           <text x="75" y="138" fill="#6b7280" font-size="10" font-weight="600" text-anchor="middle">S</text>
-          <!-- West (Drift) -->
           <text x="18" y="78" fill="#6b7280" font-size="10" font-weight="600" text-anchor="middle">W</text>
-
-          <!-- Eastward Highlight Arc -->
           <path d="M 75 19 A 56 56 0 0 1 131 75" fill="none" stroke="#10b981" stroke-width="2" opacity="0.4"/>
-
-          <!-- Center Pivot -->
           <circle cx="75" cy="75" r="5" fill="#f3f4f6"/>
-
-          <!-- The Compass Needle -->
           <g id="compassNeedleGroup" class="compass-needle" style="transform: rotate(90deg);">
-            <!-- North-Pointing Tip (Red Accent) -->
             <polygon points="75,28 80,75 75,70 70,75" fill="#e11d48"/>
-            <!-- Counterbalance Tail (Darker) -->
             <polygon points="75,115 78,75 75,70 72,75" fill="#475569"/>
           </g>
         </svg>
       </div>
 
-      <div class="compass-badge" id="compassBadge">Calculating heading...</div>
+      <div class="compass-badge" id="compassBadge">Checking bearing...</div>
+
+      <!-- Persistent Intentions Shelf -->
+      <div id="pendingShelf">
+        <div style="font-size: 11px; font-weight: 700; color: #f59e0b; margin-bottom: 6px;">⏳ Active Today's Commitments (Tap to Lock In):</div>
+        <div id="pendingList"></div>
+      </div>
+
+      <!-- TODAY'S VESSEL LOG -->
+      <div class="vessel-log-section">
+        <div class="vessel-subhead">
+          <span>Today's Vessel Log</span>
+          <span style="font-size: 10px; color: #64748b;">Catch Up / Commit</span>
+        </div>
+
+        <!-- Movement -->
+        <div class="anchor-group">
+          <div class="anchor-label">Physical Movement:</div>
+          <div class="anchor-btn-row">
+            <button class="act-btn" onclick="vesselAction('movement', 'Walk/Run', false)">🚶 Walk/Run</button>
+            <button class="act-btn" onclick="vesselAction('movement', 'Gym/Lift', false)">🏋️ Gym/Lift</button>
+            <button class="act-btn" onclick="vesselAction('movement', 'Drumming', false)">🥁 Drumming</button>
+            <button class="act-btn" onclick="vesselAction('movement', 'Casual/Stretch', false)">🧘 Stretch</button>
+            <button class="act-btn commit" onclick="vesselAction('movement', 'Movement Session', true)">⚓ Commit Today</button>
+          </div>
+        </div>
+
+        <!-- Food & Shoals -->
+        <div class="anchor-group">
+          <div class="anchor-label">Nourishment & Shoals:</div>
+          <div class="anchor-btn-row">
+            <button class="act-btn" onclick="vesselAction('food', 'Protein Anchor', false)">🍗 Protein Anchor</button>
+            <button class="act-btn" onclick="vesselAction('food', 'Solid Portion', false)">⚖️ Solid Portion</button>
+            <button class="act-btn" onclick="vesselAction('food', 'Whole Foods', false)">🥗 Whole Foods</button>
+            <button class="act-btn" onclick="vesselAction('food', 'Avoided Sweets', false)">🛡️ Avoided Sweets</button>
+            <button class="act-btn danger" onclick="vesselAction('food', 'Scraped Hull on Rocks', false)">🪨 Scraped Hull (Bikkie Slip)</button>
+            <button class="act-btn commit" onclick="vesselAction('food', 'Mindful Meal/Portion', true)">⚓ Commit Meal</button>
+          </div>
+        </div>
+
+        <!-- Hydration & Rest -->
+        <div class="anchor-group">
+          <div class="anchor-label">Hydration & Harbor:</div>
+          <div class="anchor-btn-row">
+            <button class="act-btn" onclick="vesselAction('water', '+250mL', false)">💧 +250 mL</button>
+            <button class="act-btn" onclick="vesselAction('water', '+500mL', false)">💧 +500 mL</button>
+            <button class="act-btn" onclick="vesselAction('water', '+1.0L', false)">💧 +1.0 L</button>
+            <button class="act-btn commit" onclick="vesselAction('water', 'Finish Water Bottle', true)">⚓ Commit Hydration</button>
+            <button class="act-btn rest" onclick="vesselAction('rest', 'Rest Claimed', false)">⚓ Claim Harbor Rest</button>
+          </div>
+        </div>
+
+        <button class="latch-close-btn" onclick="toggleCompass()">🔒 Latch Compass Case</button>
+      </div>
     </div>
 
-    <!-- Collapsible Dashboard -->
+    <!-- Collapsible Stats Dashboard -->
     <button class="toggle-btn" id="toggleBtn" onclick="toggleDashboard()">
       <span>📊</span> <span id="toggleText">View Today's Stats</span>
     </button>
@@ -567,6 +725,7 @@
     let selectedFiles = [];
     let pendingParsedData = null;
     let loadedPresets = [];
+    let compassOpen = false;
     
     let mediaRecorder = null;
     let audioChunks = [];
@@ -578,32 +737,24 @@
       fetchCompassHeading();
     });
 
-    function setMode(mode) {
-      currentMode = mode;
-      document.getElementById("modeLog").className = "mode-btn" + (mode === "log" ? " active" : "");
-      document.getElementById("modePrep").className = "mode-btn" + (mode === "prep" ? " active prep" : "");
-      
-      const submitBtn = document.getElementById("submitBtn");
-      if (mode === "prep") {
-        submitBtn.innerText = "Save to Meal Presets";
-        submitBtn.classList.add("prep-active");
-        document.getElementById("logInput").placeholder = "e.g. Cooked 1.2kg chicken thighs, 4c rice, broccoli. 5 portions.";
-      } else {
-        submitBtn.innerText = reviewEnabled ? "Review Entry" : "Send to Sheet";
-        submitBtn.classList.remove("prep-active");
-        document.getElementById("logInput").placeholder = "Add notes (e.g. 'Morning workout and steps' or 500 mL water)...";
-      }
-      document.getElementById("reviewCard").style.display = "none";
-    }
+    function toggleCompass() {
+      compassOpen = !compassOpen;
+      const drawer = document.getElementById("compassDrawer");
+      const text = document.getElementById("latchStatusText");
+      const chevron = document.getElementById("latchChevron");
+      const bar = document.getElementById("compassLatchBar");
 
-    function toggleReview() {
-      reviewEnabled = !reviewEnabled;
-      const btn = document.getElementById("reviewToggleBtn");
-      const text = document.getElementById("reviewStatusText");
-      btn.className = "review-toggle-btn" + (reviewEnabled ? " active" : "");
-      text.innerText = reviewEnabled ? "ON" : "OFF";
-      if (currentMode === "log") {
-        document.getElementById("submitBtn").innerText = reviewEnabled ? "Review Entry" : "Send to Sheet";
+      if (compassOpen) {
+        drawer.style.display = "block";
+        text.innerText = "Unlatched";
+        chevron.innerText = "▲";
+        bar.style.borderRadius = "14px 14px 0 0";
+        fetchCompassHeading();
+      } else {
+        drawer.style.display = "none";
+        text.innerText = "Latched";
+        chevron.innerText = "▼";
+        bar.style.borderRadius = "14px";
       }
     }
 
@@ -620,8 +771,94 @@
         badge.style.color = data.badgeColor;
         badge.style.borderColor = data.badgeColor;
         badge.style.background = `${data.badgeColor}18`;
+
+        // Render persistent commitments
+        renderPendingShelf(data.pendingIntentions || []);
       } catch (err) {
-        console.error("Compass load error:", err);
+        console.error("Compass error:", err);
+      }
+    }
+
+    function renderPendingShelf(intentions) {
+      const shelf = document.getElementById("pendingShelf");
+      const list = document.getElementById("pendingList");
+      list.innerHTML = "";
+
+      if (!intentions || intentions.length === 0) {
+        shelf.style.display = "none";
+        return;
+      }
+
+      shelf.style.display = "block";
+      intentions.forEach(item => {
+        const chip = document.createElement("button");
+        chip.className = "pending-chip";
+        chip.innerHTML = `<span>⏳ ${item}</span> <span style="font-weight:bold; color:#4ade80;">[Lock In ✔]</span>`;
+        chip.onclick = () => lockInIntention(item);
+        list.appendChild(chip);
+      });
+    }
+
+    async function vesselAction(category, item, isCommitment) {
+      showStatus("loading", isCommitment ? `⏳ Setting intention: "${item}"...` : `⏳ Logging "${item}" to vessel log...`);
+      try {
+        const res = await fetch(SCRIPT_URL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({ action: "vesselAction", category: category, item: item, isCommitment: isCommitment })
+        });
+        const data = await res.json();
+        showStatus("success", "✅ " + data.message);
+        fetchCompassHeading();
+        if (dashboardVisible) fetchStats();
+      } catch (err) {
+        showStatus("error", "❌ " + err.message);
+      }
+    }
+
+    async function lockInIntention(item) {
+      showStatus("loading", `⏳ Locking in "${item}"...`);
+      try {
+        const res = await fetch(SCRIPT_URL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({ action: "lockInIntention", item: item })
+        });
+        const data = await res.json();
+        showStatus("success", "✅ " + data.message);
+        fetchCompassHeading();
+        if (dashboardVisible) fetchStats();
+      } catch (err) {
+        showStatus("error", "❌ " + err.message);
+      }
+    }
+
+    function setMode(mode) {
+      currentMode = mode;
+      document.getElementById("modeLog").className = "mode-btn" + (mode === "log" ? " active" : "");
+      document.getElementById("modePrep").className = "mode-btn" + (mode === "prep" ? " active prep" : "");
+      
+      const submitBtn = document.getElementById("submitBtn");
+      if (mode === "prep") {
+        submitBtn.innerText = "Save to Meal Presets";
+        submitBtn.classList.add("prep-active");
+        document.getElementById("logInput").placeholder = "e.g. Cooked 1.2kg chicken thighs, 4c rice, broccoli. 5 portions.";
+      } else {
+        submitBtn.innerText = reviewEnabled ? "Review Entry" : "Send to Sheet";
+        submitBtn.classList.remove("prep-active");
+        document.getElementById("logInput").placeholder = "Add notes (e.g. 'Drumming session and 500 mL water')...";
+      }
+      document.getElementById("reviewCard").style.display = "none";
+    }
+
+    function toggleReview() {
+      reviewEnabled = !reviewEnabled;
+      const btn = document.getElementById("reviewToggleBtn");
+      const text = document.getElementById("reviewStatusText");
+      btn.className = "review-toggle-btn" + (reviewEnabled ? " active" : "");
+      text.innerText = reviewEnabled ? "ON" : "OFF";
+      if (currentMode === "log") {
+        document.getElementById("submitBtn").innerText = reviewEnabled ? "Review Entry" : "Send to Sheet";
       }
     }
 
@@ -783,7 +1020,7 @@
     function submitEntry() {
       const text = document.getElementById("logInput").value.trim();
       if (!text && selectedFiles.length === 0) {
-        showStatus("error", "⚠️️ Please enter text, record voice, or attach one or more files.");
+        showStatus("error", "⚠️ Please enter text, record voice, or attach one or more files.");
         return;
       }
       sendEntry({ text: text });
@@ -854,7 +1091,7 @@
         const dc = parsed.dailyContext;
         const dcBox = document.createElement("div");
         dcBox.innerHTML = `
-          <div class="review-subhead">Daily Baseline & Tracker Data</div>
+          <div style="font-size:11px; font-weight:700; color:#38bdf8; text-transform:uppercase; margin:8px 0 6px 0;">Daily Baseline & Tracker Data</div>
           <div class="edit-grid">
             <div class="edit-field"><label>Steps</label><input type="number" value="${dc.steps || ''}" id="dc_steps"></div>
             <div class="edit-field"><label>Water +L</label><input type="number" step="0.1" value="${dc.waterAddedLitres || ''}" id="dc_water"></div>
@@ -873,7 +1110,7 @@
       itemsContainer.innerHTML = "";
       if (parsed.intakeEvents && parsed.intakeEvents.length > 0) {
         const sub = document.createElement("div");
-        sub.className = "review-subhead";
+        sub.style.cssText = "font-size:11px; font-weight:700; color:#38bdf8; text-transform:uppercase; margin:8px 0 6px 0;";
         sub.innerText = "Food & Intake Events";
         itemsContainer.appendChild(sub);
 
